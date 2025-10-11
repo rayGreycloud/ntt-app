@@ -80,8 +80,9 @@ export class OTPService {
 
         return {
           success: true,
-          message: 'MOCK MODE: Check server console for OTP code',
-          otp: process.env.NODE_ENV === 'development' ? otp : undefined // Only expose OTP in dev
+          message:
+            'MOCK MODE: OTP displayed below (server console also logged)',
+          otp: otp // Return OTP in response when MOCK_AUTH is enabled
         };
       }
 
