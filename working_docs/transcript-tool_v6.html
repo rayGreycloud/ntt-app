@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📁</text></svg>"
+    />
+    <title>Transcript Text File Formatter</title>
+    <style>
+      /* Inline CSS styles will go here */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        color: #faf9f6;
+        background-color: rgb(19, 18, 18);
+      }
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        margin-bottom: 0 !important;
+      }
+      label {
+        width: 200px;
+      }
+      #file-input-container {
+        margin-bottom: 1rem;
+      }
+      input[type='file'],
+      input[type='file']::-webkit-file-upload-button {
+        cursor: pointer;
+      }
+      #container {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      #btn-container {
+        position: absolute;
+        top: 0;
+        left: -1rem;
+        max-width: 200px;
+        display: flex;
+        flex-direction: column;
+        /* gap: 1rem; */
+      }
+      #indentationSpaceCount,
+      #lineBreakSpaceCount {
+        width: 3rem;
+        padding: 0.3rem 0;
+        padding-left: 2rem;
+        font-size: larger;
+        border-radius: 6px;
+      }
+      button {
+        margin: 10px 6px;
+        padding: 0.5rem 1rem;
+        border-radius: 3px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      textarea {
+        background-color: #faf9f6;
+        resize: none;
+      }
+      #copyright {
+        font-size: smaller;
+        margin-bottom: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Transcript Text File Formatter</h1>
+      <div id="copyright">
+        &copy; <span>2024</span> Naegeli Deposition & Trial
+      </div>
+      <div id="file-input-container">
+        <label for="fileInput">Transcript Text File:</label>
+        <input
+          type="file"
+          id="fileInput"
+          accept=".txt"
+          onChange="handleFileUpload(event)"
+        />
+      </div>
+      <div id="container">
+        <div id="btn-container">
+          <div class="indentationInput">
+            <label for="indentationSpaceCount">Indentation Space Count:</label>
+            <input
+              type="number"
+              id="indentationSpaceCount"
+              name="indentationSpaceCount"
+              min="0"
+              max="20"
+              step="1"
+              value="5"
+            />
+          </div>
+          <button onclick="handleIndentationRemoval()">Indent Removal</button>
+          <div class="lineBreakInput">
+            <label for="lineBreakSpaceCount">Line Break Space Count:</label>
+            <input
+              type="number"
+              id="lineBreakSpaceCount"
+              name="lineBreakSpaceCount"
+              min="0"
+              max="20"
+              step="1"
+              value="5"
+            />
+          </div>
+          <button onclick="handleLineBreakRemoval()">Line Break Removal</button>
+          <button style="justify-self: flex-end" onclick="downloadFile()">
+            Download
+          </button>
+          <button onclick="clearInput()">Clear</button>
+        </div>
+        <textarea id="textFile" type="text" rows="40" cols="80"> </textarea>
+      </div>
+      <br />
+      <button
+        id="clearMarkerBtn"
+        style="display: none; margin: 0 auto"
+        onclick="clearCaptionMark()"
+      >
+        Remove 🚩 Marker
+      </button>
+      <br />
+    </main>
+
+    <script>
+      // Inline JavaScript will go here
+      let file; // Global variable to store the file object
+      let transcript_text; // Global variable to store the transcript text
+      let captionMarked = false;
+      // let captionMarkIdx = '';
+
+      const textareaInput = document.getElementById('textFile');
+      textareaInput.addEventListener('click', insertCaptionMark);
+      textareaInput.addEventListener('mouseover', () => {
+        textareaInput.style.cursor = 'pointer';
+      });
+      textareaInput.addEventListener('mouseout', () => {
+        textareaInput.style.cursor = 'default';
+      });
+
+      const clearMarkerBtn = document.getElementById('clearMarkerBtn');
+      const indentationInput = document.getElementById('indentationSpaceCount');
+      const lineBreakInput = document.getElementById('lineBreakSpaceCount');
+
+      async function readTextFile(textFile) {
+        if (!textFile) {
+          alert('No text file selected');
+          return;
+        }
+
+        console.log('reading file...');
+        try {
+          const fileContent = await textFile.text();
+
+          return fileContent;
+        } catch (error) {
+          console.error('Error reading file:', error);
+        }
+      }
+
+      function removePageAndLineNumbers(fileContent) {
+        console.log('removing page and line numbers...');
+        console.log('removePageAndLineNumbers/fileContent: ', fileContent);
+        // Regular expression to match page and line numbers
+        const regex = /\n\s*\d+\s{0,3}/g; // does this match 0001?
+
+        // Replace all occurrences of page and line numbers with an empty string
+        const cleanedContent = fileContent.replace(regex, '');
+
+        return cleanedContent;
+      }
+
+      async function setInputValue() {
+        const fileContent = await readTextFile(file);
+
+        if (!fileContent) {
+          alert('No file content found');
+          return;
+        }
+
+        const cleanedContent = removePageAndLineNumbers(fileContent);
+        console.log(
+          'removePageAndLineNumbers/cleanedContent: ',
+          cleanedContent
+        );
+        // set input value & preserve original in transcript_text
+        transcript_text = cleanedContent;
+        textareaInput.value = cleanedContent;
+      }
+
+      async function handleFileUpload(event) {
+        console.log('uploading file...');
+        file = event.target.files[0];
+        if (file) {
+          console.log('File:', file);
+          console.log('File name:', file.name);
+          console.log('File size:', file.size);
+        } else {
+          file = null;
+          console.log('No file selected');
+        }
+        setInputValue();
+      }
+
+      function insertCaptionMark(event) {
+        // prevent multiple marks
+        console.log('captionMarked: ', captionMarked);
+        if (captionMarked || !file) {
+          return;
+        }
+
+        const textarea = document.getElementById('textFile');
+
+        if (event.target.selectionStart) {
+          // captionMarkIdx = event.target.selectionStart;
+
+          const marked =
+            textarea.value.slice(0, event.target.selectionStart) +
+            '🚩\n ' +
+            textarea.value.slice(event.target.selectionStart);
+
+          textareaInput.value = marked;
+
+          captionMarked = true;
+          clearMarkerBtn.style.display = 'block';
+        }
+      }
+
+      function clearCaptionMark() {
+        console.log('clearing caption mark...');
+        console.log('clearMarkerBtn: ', clearMarkerBtn);
+        textareaInput.value = transcript_text;
+        // captionMarkIdx = null;
+        captionMarked = false;
+        clearMarkerBtn.style.display = 'none';
+      }
+
+      function clearInput() {
+        file = null;
+        document.getElementById('fileInput').value = '';
+        document.getElementById('textFile').value = '';
+        indentationInput.value = 5;
+        lineBreakInput.value = 5;
+        captionMarked = false;
+        clearMarkerBtn.style.display = 'none';
+      }
+
+      function splitTextOnMarker(text) {
+        const markerIdx = text.indexOf('🚩');
+
+        const caption = text.slice(0, markerIdx);
+        const body = text.slice(markerIdx + 2);
+        return { caption, body };
+      }
+
+      function removeExtraLineBreaks(content) {
+        console.log('lineBreakInput: ', lineBreakInput.value);
+        const count = lineBreakInput.value;
+
+        // const regex = /(?<!\n\s{3,})\n(?!\s{3,})/g;
+        const regex = new RegExp(`\\n(?!Q\\.|Q|A\\.|A|\\s{${count},})`, 'g');
+
+        //const regex = new RegExp(
+        //   `(?<!\\n\\s{${count},})\\n(?!\\s{${count},})`,
+        //   'g'
+        // );
+        console.log('regex: ', regex);
+        const updated = content.replace(regex, ' ');
+
+        return updated;
+      }
+
+      function removeIndentations(content) {
+        console.log('indentationInput: ', indentationInput.value);
+        const regex = new RegExp(`\\n\\s{${indentationInput.value}}`, 'g');
+        // console.log('regex: ', regex);
+        // const regex = /\n(\s{5})/g;
+        const updated = content.replace(regex, '\n');
+
+        return updated;
+      }
+
+      function downloadFormattedText(cleanedContent, fileName) {
+        console.log('downloading file...');
+        // Create a new Blob with the cleaned content
+        const blob = new Blob([cleanedContent], { type: 'text/plain' });
+
+        // Create a temporary URL for the Blob
+        const url = window.URL.createObjectURL(blob);
+
+        // Create a temporary anchor element
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = `${fileName}.txt`;
+
+        // Append the anchor to the document
+        document.body.appendChild(anchor);
+
+        // Trigger the download
+        anchor.click();
+
+        // Clean up
+        document.body.removeChild(anchor);
+        window.URL.revokeObjectURL(url);
+      }
+
+      async function handleIndentationRemoval() {
+        try {
+          console.log('Indent removal clicked...');
+          if (!file) {
+            alert('Please select a file');
+            return;
+          }
+
+          const processedContent = removeIndentations(textareaInput.value);
+          console.log('After indent removal: ', processedContent);
+
+          textareaInput.value = processedContent;
+        } catch (error) {
+          console.log('Error: ', error);
+          alert('Something went wrong :(');
+        }
+      }
+
+      async function handleLineBreakRemoval() {
+        try {
+          console.log('Line break removal clicked...');
+          if (!file) {
+            alert('Please select a file');
+            return;
+          }
+          if (!captionMarked) {
+            alert('Please mark the end of the caption');
+            return;
+          }
+          // split content into caption and body
+          const splitText = splitTextOnMarker(textareaInput.value);
+          // console.log('splitText.caption: ', splitText.caption);
+          // console.log('splitText.body: ', splitText.body);
+
+          // clean body
+          const cleanedContent = removeExtraLineBreaks(splitText.body);
+          console.log('After line break removal: ', cleanedContent);
+
+          // rejoin caption & body
+          const formattedContent = splitText.caption + '\n' + cleanedContent;
+
+          textareaInput.value = formattedContent;
+          captionMarked = false;
+          clearMarkerBtn.style.display = 'none';
+        } catch (error) {
+          console.log('Error: ', error);
+          alert('Something went wrong :(');
+        }
+      }
+
+      async function downloadFile() {
+        try {
+          console.log('Download button clicked');
+          if (!file) {
+            alert('Please select a file');
+            return;
+          }
+
+          const content = textareaInput.value;
+
+          // download
+          downloadFormattedText(content, `${file.name}_formatted`);
+        } catch (error) {
+          console.log('Error: ', error);
+          alert('Something went wrong :(');
+        }
+      }
+    </script>
+  </body>
+</html>

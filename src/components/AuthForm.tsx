@@ -12,10 +12,12 @@ export default function AuthForm({ onAuthenticated }: AuthFormProps) {
   const [step, setStep] = useState<'email' | 'otp'>('email');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [devOtp, setDevOtp] = useState<string | null>(null);
 
   const sendOTP = async () => {
     setLoading(true);
     setMessage('');
+    setDevOtp(null);
 
     try {
       const response = await fetch('/api/auth/send-otp', {
@@ -28,7 +30,11 @@ export default function AuthForm({ onAuthenticated }: AuthFormProps) {
 
       if (data.success) {
         setStep('otp');
-        setMessage('Verification code sent to your email');
+        setMessage(data.message);
+        // In development, the OTP might be returned in the response
+        if (data.otp) {
+          setDevOtp(data.otp);
+        }
       } else {
         setMessage(data.message);
       }
@@ -80,7 +86,10 @@ export default function AuthForm({ onAuthenticated }: AuthFormProps) {
           <h1 className='text-3xl font-bold text-gray-900 dark:text-white'>
             Transcript Tool
           </h1>
-          <p className='mt-2 text-sm text-gray-600 dark:text-gray-400'>
+          <p
+            className='mt-2 text-sm text-gray-600 dark:text-gray-400'
+            suppressHydrationWarning
+          >
             © {new Date().getFullYear()} Naegeli Deposition & Trial
           </p>
         </div>
@@ -107,6 +116,7 @@ export default function AuthForm({ onAuthenticated }: AuthFormProps) {
                   required
                   className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white'
                   placeholder='your.email@company.com'
+                  suppressHydrationWarning
                 />
               </div>
             ) : (
@@ -126,10 +136,30 @@ export default function AuthForm({ onAuthenticated }: AuthFormProps) {
                   maxLength={6}
                   className='w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white text-center text-lg tracking-widest'
                   placeholder='000000'
+                  suppressHydrationWarning
                 />
                 <p className='mt-2 text-xs text-gray-500 dark:text-gray-400'>
                   Code sent to {email}
                 </p>
+
+                {/* Development OTP Display */}
+                {devOtp && (
+                  <div className='mt-3 p-3 bg-yellow-100 dark:bg-yellow-900 border border-yellow-400 dark:border-yellow-600 rounded-md'>
+                    <p className='text-xs font-semibold text-yellow-800 dark:text-yellow-200 mb-1'>
+                      🧪 DEV MODE - Your OTP:
+                    </p>
+                    <p className='text-2xl font-mono text-center text-yellow-900 dark:text-yellow-100 tracking-widest'>
+                      {devOtp}
+                    </p>
+                    <button
+                      type='button'
+                      onClick={() => setOtp(devOtp)}
+                      className='mt-2 w-full text-xs text-yellow-700 dark:text-yellow-300 hover:text-yellow-900 dark:hover:text-yellow-100 underline'
+                    >
+                      Click to auto-fill
+                    </button>
+                  </div>
+                )}
               </div>
             )}
 

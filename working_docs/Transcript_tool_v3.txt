@@ -1,0 +1,15 @@
+Transcript_tool_v3
+
+transcript tool version 3
+
+architecture:
+Vercel 
+NextJs/ts
+
+Vercel AI SDK - determine caption section? determine indent?
+
+Vercel KV - for email otp using whitelisted emails in csv or ?
+
+Sendgrid email for sending OTPs 
+
+Word Doc library - if creating new .doc with results using template

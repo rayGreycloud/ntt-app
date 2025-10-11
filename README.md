@@ -33,8 +33,12 @@ npm install
 Copy the example environment file and configure your variables:
 
 ```bash
-cp .env.example .env.local
+cp .env.local.example .env.local
 ```
+
+**🧪 Quick Start with Mock Auth (No Email Setup Required)**
+
+For development without email service setup, see [QUICKSTART_MOCK_AUTH.md](./QUICKSTART_MOCK_AUTH.md)
 
 Required environment variables:
 
@@ -51,7 +55,10 @@ KV_REST_API_READ_ONLY_TOKEN=your_kv_read_only_token
 
 ```env
 SENDGRID_API_KEY=your_sendgrid_api_key
+SENDGRID_FROM_EMAIL=noreply@yourdomain.com
 ```
+
+**Note:** If you don't have SendGrid set up yet, you can use mock authentication mode. See [QUICKSTART_MOCK_AUTH.md](./QUICKSTART_MOCK_AUTH.md) for details.
 
 #### OpenAI for AI Caption Detection
 

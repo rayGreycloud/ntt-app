@@ -1,8 +1,17 @@
 import { kv } from '@vercel/kv';
 import sgMail from '@sendgrid/mail';
 
-// Initialize SendGrid
-sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+// Initialize SendGrid only if API key is available
+if (process.env.SENDGRID_API_KEY) {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
+
+// Mock mode: When true, OTP is logged to console instead of being emailed
+const MOCK_MODE =
+  process.env.MOCK_AUTH === 'true' || !process.env.SENDGRID_API_KEY;
+
+// In-memory storage for mock mode (only used when KV is not available)
+const mockStorage = new Map<string, string>();
 
 interface OTPData {
   email: string;
@@ -23,10 +32,10 @@ export class OTPService {
 
   static async sendOTP(
     email: string
-  ): Promise<{ success: boolean; message: string }> {
+  ): Promise<{ success: boolean; message: string; otp?: string }> {
     try {
-      // Check if email is whitelisted
-      if (!this.isWhitelistedEmail(email)) {
+      // Check if email is whitelisted (skip in mock mode for easier testing)
+      if (!MOCK_MODE && !this.isWhitelistedEmail(email)) {
         return {
           success: false,
           message: 'Email not authorized to use this service'
@@ -38,23 +47,48 @@ export class OTPService {
         Date.now() +
         parseInt(process.env.OTP_EXPIRY_MINUTES || '10') * 60 * 1000;
 
-      // Store OTP in Vercel KV
-      await kv.set(
-        `otp:${email}`,
-        JSON.stringify({
-          email,
-          otp,
-          expiresAt
-        } as OTPData),
-        {
-          px: parseInt(process.env.OTP_EXPIRY_MINUTES || '10') * 60 * 1000 // Auto-expire
-        }
-      );
+      const otpData: OTPData = {
+        email,
+        otp,
+        expiresAt
+      };
 
-      // Send email via SendGrid
+      // Store OTP in Vercel KV or mock storage
+      if (MOCK_MODE) {
+        // Use in-memory storage for mock mode
+        mockStorage.set(`otp:${email}`, JSON.stringify(otpData));
+        // Auto-expire after timeout
+        setTimeout(() => {
+          mockStorage.delete(`otp:${email}`);
+        }, parseInt(process.env.OTP_EXPIRY_MINUTES || '10') * 60 * 1000);
+      } else {
+        // Use Vercel KV in production
+        await kv.set(`otp:${email}`, JSON.stringify(otpData), {
+          px: parseInt(process.env.OTP_EXPIRY_MINUTES || '10') * 60 * 1000
+        });
+      }
+
+      if (MOCK_MODE) {
+        // Mock mode: Log OTP to console and return it in the response
+        console.log('\n========================================');
+        console.log('🔐 MOCK AUTH MODE - OTP Generated');
+        console.log('========================================');
+        console.log(`Email: ${email}`);
+        console.log(`OTP Code: ${otp}`);
+        console.log(`Expires: ${new Date(expiresAt).toLocaleString()}`);
+        console.log('========================================\n');
+
+        return {
+          success: true,
+          message: 'MOCK MODE: Check server console for OTP code',
+          otp: process.env.NODE_ENV === 'development' ? otp : undefined // Only expose OTP in dev
+        };
+      }
+
+      // Production mode: Send email via SendGrid
       const msg = {
         to: email,
-        from: 'noreply@naegeli.com', // Update with your verified sender
+        from: process.env.SENDGRID_FROM_EMAIL || 'noreply@naegeli.com',
         subject: 'Transcript Tool - Verification Code',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -99,7 +133,15 @@ export class OTPService {
     otp: string
   ): Promise<{ success: boolean; message: string }> {
     try {
-      const storedData = await kv.get(`otp:${email}`);
+      let storedData: string | null = null;
+
+      // Get OTP from mock storage or Vercel KV
+      if (MOCK_MODE) {
+        storedData = mockStorage.get(`otp:${email}`) || null;
+      } else {
+        const kvData = await kv.get(`otp:${email}`);
+        storedData = kvData ? String(kvData) : null;
+      }
 
       if (!storedData) {
         return {
@@ -108,11 +150,15 @@ export class OTPService {
         };
       }
 
-      const otpData: OTPData = JSON.parse(storedData as string);
+      const otpData: OTPData = JSON.parse(storedData);
 
       // Check if OTP has expired
       if (Date.now() > otpData.expiresAt) {
-        await kv.del(`otp:${email}`);
+        if (MOCK_MODE) {
+          mockStorage.delete(`otp:${email}`);
+        } else {
+          await kv.del(`otp:${email}`);
+        }
         return {
           success: false,
           message: 'Verification code has expired'
@@ -128,7 +174,11 @@ export class OTPService {
       }
 
       // OTP is valid, clean up
-      await kv.del(`otp:${email}`);
+      if (MOCK_MODE) {
+        mockStorage.delete(`otp:${email}`);
+      } else {
+        await kv.del(`otp:${email}`);
+      }
 
       return {
         success: true,

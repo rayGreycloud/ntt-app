@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { TranscriptData, ProcessingOptions } from '@/types/transcript';
 
 interface TranscriptProcessorProps {
@@ -24,6 +24,37 @@ export default function TranscriptProcessor({
   const [aiDetecting, setAiDetecting] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [originalContent] = useState(transcriptData.content);
+
+  // Determine base indent of transcript
+  const detectBaseIndent = (text: string): number => {
+    // Split text into lines and remove empty ones
+    const lines = text.split(/\r?\n/).filter((line) => line.trim() !== '');
+
+    // Count leading spaces for each line
+    const indents = lines.map((line) => {
+      const match = line.match(/^ +/);
+      return match ? match[0].length : 0;
+    });
+
+    // Find minimum indent across all lines (excluding lines with no indent)
+    const nonZeroIndents = indents.filter((indent) => indent > 0);
+    if (nonZeroIndents.length > 0) {
+      return Math.min(...nonZeroIndents);
+    }
+
+    return 5; // Default fallback
+  };
+
+  // Auto-detect base indent when transcript loads
+  useEffect(() => {
+    if (transcriptData.content) {
+      const baseIndent = detectBaseIndent(transcriptData.content);
+      setOptions((prev) => ({
+        ...prev,
+        indentationSpaceCount: baseIndent
+      }));
+    }
+  }, [transcriptData.content]);
 
   const insertCaptionMark = () => {
     if (captionMarked || !textareaRef.current) return;

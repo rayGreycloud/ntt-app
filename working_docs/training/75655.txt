@@ -1,0 +1,2017 @@
+
+
+
+                                                                     1
+
+          1   IN THE UNITED STATES DISTRICT COURT
+
+          2   FOR THE WESTERN DISTRICT OF WASHINGTON
+
+          3   AT SEATTLE
+
+          4
+
+          5   SUSAN M. STEPHENS, an American
+
+          6   citizen and resident of Oregon,
+
+          7   Plaintiff,
+
+          8   vs.                               CASE NO. 2:23-cv-1226-TLF
+
+          9   HOLLAND AMERICA LINE, N.V., a
+
+         10   Curacao corporation, and DOE, INC.,
+
+         11   and JOHN DOE,
+
+         12   Defendants.
+
+         13
+
+         14
+
+         15   REMOTE VIDEOTAPED DEPOSITION OF
+
+         16   MARK BALBUENA
+
+         17
+
+         18   TAKEN ON
+
+         19   FRIDAY, JUNE 14, 2024
+
+         20   1:45 P.M.
+
+         21
+
+         22    
+
+         23
+
+         24
+
+         25
+
+
+
+
+
+                                                                     2
+
+          1   APPEARANCES
+
+          2
+
+          3   Appearing on Behalf of Plaintiff:
+
+          4   JAMES F. WHITEHEAD, ESQUIRE
+
+          5   WHITEHEAD LAW OFFICES PLLC
+
+          6   P.O. Box 84567
+
+          7   Seattle, WA 98124
+
+          8   (206) 448-0100
+
+          9   jim@jfw-law.com
+
+         10
+
+         11   Appearing on Behalf of the Defendants:
+
+         12   NICHOLAS S. POLITIS, ESQUIRE
+
+         13   FLYNN DELICH AND WISE LLP
+
+         14   One World Trade Center, Suite 1800
+
+         15   Long Beach, CA 90831
+
+         16   (562) 435-2626
+
+         17   nicholasp@fdw-law.com
+
+         18
+
+         19   Also Present:
+
+         20   Susan Stephens, Plaintiff
+
+         21
+
+         22
+
+         23
+
+         24
+
+         25
+
+
+
+
+
+                                                                     3
+
+          1   REMOTE VIDEOTAPED DEPOSITION OF
+
+          2   MARK BALBUENA
+
+          3   TAKEN ON
+
+          4   FRIDAY, JUNE 14, 2024
+
+          5   1:45 P.M.
+
+          6
+🚩\n 
+          7             VIDEOGRAPHER:  Stand by.  We are on the record.
+
+          8   The time is 1:45 p.m.  The date is June 14th, 2024.  This is
+
+          9   the beginning of the deposition of Mark Balbuena.  The case
+
+         10   caption is Stephens vs. Holland American Lines.  Will
+
+         11   counsel introduce yourselves and state whom you represent.
+
+         12             MR. WHITEHEAD:  I'm Jim Whitehead.  I represent
+
+         13   the plaintiff, Susan Stephens.
+
+         14             MR. POLITIS:  I'm Nick Politis for Holland
+
+         15   American Line.
+
+         16             VIDEOGRAPHER:  The court reporter will now swear
+
+         17   in the witness.
+
+         18             THE REPORTER:  Thank you.  Mr. Balbuena, please
+
+         19   raise your right hand.  Do you affirm, under penalty of
+
+         20   perjury, that the testimony you are about to give will be
+
+         21   the truth, the whole truth, and nothing but the truth?  And
+
+         22   I apologize, you'll have to use verbal responses such as
+
+         23   "yes" or "no".  I can't capture like a head nod.
+
+         24             THE WITNESS:  Yes.
+
+         25             THE REPORTER:  Thank you.  All right.  Counsel,
+
+
+
+
+
+                                                                     4
+
+          1   please proceed.
+
+          2             MR. POLITIS:  Thank you.  Mr. Balbuena, before we
+
+          3   get started, I just wanted to mention a couple of things.
+
+          4   First, I'd like an opportunity for the witness to
+
+          5   read/review of the deposition transcript.  I'd just like to
+
+          6   get it on the record right now.
+
+          7             And I would also indicate English is his second
+
+          8   language, counsel.  So if you would, echoing the reporter's
+
+          9   instructions, move sort of slowly with him so that he can
+
+         10   understand your questions.  Thank you.
+
+         11             MR. WHITEHEAD:  Are we ready to proceed?
+
+         12             MR. POLITIS:  Yes.
+
+         13
+
+         14   MARK BALBUENA, having been first duly affirmed to tell the
+
+         15   truth, was examined, and testified as follows:
+
+         16
+
+         17   EXAMINATION
+
+         18   BY MR. WHITEHEAD:
+
+         19        Q.   Mr. Balbuena, have you ever given a deposition
+
+         20   before?
+
+         21        A.   No.
+
+         22        Q.   Okay.  When you say that, I then have a list of
+
+         23   things to say to you that are important to make this as
+
+         24   successful as possible.  Fortunately, the court reporter has
+
+         25   already taken some of my thunder, but that's good because
+
+
+
+
+
+                                                                     5
+
+          1   that means that I don't have to repeat everything.  But you
+
+          2   need to tell the truth to the best of your ability, you
+
+          3   know, your -- the best of your knowledge or belief.  We want
+
+          4   to get a good, clean record.  If you don't understand any
+
+          5   question that I ask you, please let me know, and I will try
+
+          6   to rephrase it so that it's more understandable.
+
+          7             The court reporter told you about it's important
+
+          8   that we not talk at the same time.  She's talking to me as
+
+          9   well as to you.  Most people, I think, and certainly a lot
+
+         10   of lawyers, will hesitate in the middle of a sentence.  And
+
+         11   you need to let me finish the question before you start
+
+         12   answering.  Because if you answer before I'm finished, we're
+
+         13   likely to be talking at the same time, and the court
+
+         14   reporter is going to have a hard time.
+
+         15             And again, it's important that you use words,
+
+         16   "yes", "no", but not rely on us to understand, you know, a
+
+         17   shake of the head or a nod of the head.  We want words.
+
+         18             If at any time you would like to take a break, let
+
+         19   me know.  The only exception to taking a break right away is
+
+         20   if I have asked you a question that you have not yet
+
+         21   answered.  I will then ask you to answer the question, and
+
+         22   then if you need a break, we can take a break at that point.
+
+         23   And unless it's an emergency, those breaks will probably
+
+         24   just be five minutes, maybe 10 minutes long.
+
+         25             What was that?
+
+
+
+
+
+                                                                     6
+
+          1             MR. POLITIS:  Sorry.
+
+          2        Q.   (By Mr. Whitehead)  Okay.  So do you have any
+
+          3   questions about those guidelines?  Mr. Balbuena, can you
+
+          4   hear me?
+
+          5        A.   No, it's okay.
+
+          6        Q.   Okay.  So how old are you, sir?
+
+          7        A.   I just turned 50 last March.
+
+          8        Q.   50?
+
+          9        A.   Yes, sir.
+
+         10        Q.   Okay.  And are you currently employed?
+
+         11        A.   Currently employed with Holland American Line on
+
+         12   board, MS Eurodam now.
+
+         13        Q.   Which vessel?
+
+         14        A.   Eurodam, MS Eurodam.
+
+         15        Q.   Okay.  When did you start working for Holland
+
+         16   America?
+
+         17        A.   In way back 2003.
+
+         18        Q.   And have you worked for them steadily since 2003?
+
+         19        A.   Pardon me?  Come again.
+
+         20        Q.   Have you worked for Holland America since 2003,
+
+         21   all the way to the present time?
+
+         22        A.   Yes, sir.
+
+         23        Q.   Okay.  Can you describe briefly any other jobs
+
+         24   you've had before starting to work for Holland America?
+
+         25        A.   I worked with a small, like a bus craft in the
+
+
+
+
+
+                                                                     7
+
+          1   Philippines.  That's where I learned to (inaudible).  And I
+
+          2   have a stint as well in hotels.  Yeah, that hotel is
+
+          3   addition resort hotel.  My starting point to greeting and
+
+          4   working with cruise ships, like Holland American Line.
+
+          5        Q.   Okay.  What did you do for those other companies?
+
+          6   What were the responsibilities you had?
+
+          7        A.   Oh, I worked -- I've been doing the bartender --
+
+          8   bartending, yes.  In Plantation Bay, I was, like, in the
+
+          9   guest services as well.  And same time, I worked as
+
+         10   bartender.
+
+         11        Q.   Okay.  And your current job with Holland America
+
+         12   is as a bartender?
+
+         13        A.   It's a head bartender.
+
+         14        Q.   Okay.  I don't really know whether this question
+
+         15   will make sense or not, but is there -- the title of
+
+         16   bartender, does that always mean the same thing to people in
+
+         17   the business?  In other words, you say you're a bartender,
+
+         18   and a knowledgeable person would know exactly what you did
+
+         19   in your job?
+
+         20        A.   I read you what this says, so -- I'm doing bartendering, and it's
+
+         21   in hospitality, and I'm preparing drinks and being mixology
+
+         22   in that sense, and serve drinks to the guests.
+
+         23        Q.   Okay.  So did you work on the Nieuw Statendam
+
+         24   cruise ship in February of 2023 on its Caribbean cruise?
+
+         25        A.   Yes, sir.
+
+
+
+
+
+                                                                     8
+
+          1        Q.   Okay.  And was your job title then bartender?
+
+          2        A.   I was a bartender.
+
+          3        Q.   Okay.  Do you recall an accident occurring on
+
+          4   February 25th, 2023, involving Susan Stephens, my client?
+
+          5        A.   Yes, sir.
+
+          6        Q.   What were your responsibilities on that day?
+
+          7        A.   Pardon me, again?
+
+          8        Q.   Do you remember what specifically your
+
+          9   responsibilities were as a bartender on that day, or what
+
+         10   you did that day?
+
+         11        A.   Oh, all right.  I was getting all this mise en
+
+         12   place in the bar.  Yes, I need to prepare all the equipment.
+
+         13   I need to have the ice ready.  I need to -- all the
+
+         14   preparation that the bar would be ready for a sailaway.
+
+         15        Q.   Okay.  Did you have a supervisor on the vessel
+
+         16   that day?
+
+         17        A.   Well, my -- on that particular line, yes, I am the
+
+         18   supervisor.  But the supervisor, he is on call.  He's on
+
+         19   call.  He's got to be on the other side of the bar, then
+
+         20   he'll be running to the other bar.
+
+         21        Q.   Okay.  Well, I'm not sure I'm understanding.  Were
+
+         22   you the head bartender that day?
+
+         23        A.   No, I am a bartender.  I wasn't head bartender
+
+         24   yet.
+
+         25        Q.   Okay.  So I think I already asked you about the
+
+
+
+
+
+                                                                     9
+
+          1   accident.  Do you remember where the accident occurred, for
+
+          2   Ms. Stephens?
+
+          3        A.   Yes, it was in front of the Sea View Bar.
+
+          4        Q.   In front of the what bar?
+
+          5        A.   Sea View.
+
+          6        Q.   Sea View.  Sea View Bar.  Okay.
+
+          7        A.   The outside the deck, aft, the back of the ship.
+
+          8        Q.   Can you describe your recollection of the
+
+          9   accident?
+
+         10        A.   Yes, I can describe, sir.  You want me to say it?
+
+         11        Q.   Please do.
+
+         12        A.   Yeah, that was a day where we were busy preparing
+
+         13   my bar, because we were expecting for a sailaway party.  So
+
+         14   it's a normal day for me to have my bar ready, all the mise
+
+         15   en place from all these drinks, preparing all these
+
+         16   garnishes, ice, supposedly.  And that's it.  That's my
+
+         17   primary job on that day.
+
+         18        Q.   Okay.  And can you describe how the accident
+
+         19   happened?
+
+         20        A.   It start out -- it happened when we were -- got
+
+         21   busy, and I was bartendering inside the bar.  Then when I
+
+         22   check my ice bin, that I didn't have any ice anymore.  So I
+
+         23   decided to come out from the bar and get some ice for the
+
+         24   other side of the pantry.  So I need to get that ice cubes
+
+         25   to the other side, to the pantry.
+
+
+
+
+
+                                                                    10
+
+          1        Q.   You were going to take them to the pantry?
+
+          2        A.   Yes.  I need to get the ice to the pantry where
+
+          3   the ice bucket was located.
+
+          4        Q.   Oh, that's where you had to go to get the ice?
+
+          5        A.   Yes.  Yes, sir.
+
+          6        Q.   Okay.  And so how -- what were you using to carry
+
+          7   the ice?  Or what was your plan when you got the ice?  How
+
+          8   were you going to get it back to where it was needed?
+
+          9        A.   Well, we are using this cart to transport the ice
+
+         10   from the other side and to get through the bar to the other
+
+         11   side.
+
+         12        Q.   Okay.  Was there more than one bar on that deck?
+
+         13        A.   No, there's only one bar, sir, Sea View Bar, and
+
+         14   it has the pantry.
+
+         15        Q.   Okay.  So you're pushing the cart, and then what
+
+         16   happened?
+
+         17        A.   Yes.  When I took the ice to the other side a--
+
+         18   and of course, I need to transport that ice using the cart.
+
+         19   And since it was a busy day, so I need to stop from time to
+
+         20   time, stop.  And then suddenly, there was a lady just right
+
+         21   -- crossing my way, and that's when the accident happened.
+
+         22        Q.   You hit her; is that correct?
+
+         23             MR. POLITIS:  Objection leading.
+
+         24        Q.   (By Mr. Whitehead)  When you say that's what
+
+         25   happened, can you just an little bit more specific?  You
+
+
+
+
+
+                                                                    11
+
+          1   said that that lady was near by, and that's when --
+
+          2        A.   She just came out from nowhere, from the right
+
+          3   side of my cart.  And as far as I remember, she was just --
+
+          4   she was seeing her husband to the other side in the smoking
+
+          5   area, and she was not minding that I was there.  And that's
+
+          6   where she fell down.
+
+          7        Q.   Did she tell you, or did someone tell you that she
+
+          8   was looking at her husband?
+
+          9        A.   No, no.  I was the one who was writing.  And I
+
+         10   could see that there was a guy on the other side and
+
+         11   looking.  And I don't know who he is looking.  And just,
+
+         12   that lady just came by on the right side of my cart, and she
+
+         13   fell down.
+
+         14        Q.   So did you decide later that the guy that you had
+
+         15   seen was her husband?
+
+         16        A.   Well, later -- no, later I learned that that guy
+
+         17   was her husband.
+
+         18        Q.   Okay.  So I'm not trying to trick you, I'm trying
+
+         19   to understand everything and what we covered and what we
+
+         20   didn't.  So you said that she came out of nowhere, and you
+
+         21   think she was looking for her husband.  Did the cart come
+
+         22   into contact with her?
+
+         23        A.   No, because there was clear way, as I moving
+
+         24   forward, and she just -- my right side, and then she just
+
+         25   came and she fell down, just like that.  It's just like a
+
+
+
+
+
+                                                                    12
+
+          1   surprise, you know, that she came on that side of the way.
+
+          2        Q.   Well, when I say was there a contact between the
+
+          3   cart and Ms. Stephens, what I mean is did they run into each
+
+          4   other?
+
+          5        A.   No.  No, sir.
+
+          6        Q.   So is it your position that she just fell down by
+
+          7   herself without any involvement by you?
+
+          8        A.   She went to cross the way.
+
+          9        Q.   Right.
+
+         10        A.   While I'm heading forward to my cart, and suddenly
+
+         11   she came up on the right side, and she hit my cart.
+
+         12        Q.   Oh, she hit your cart?
+
+         13        A.   Yes.
+
+         14        Q.   Okay.  And then what happened?
+
+         15        A.   Oh, she fell down, of course.  And it was stopped
+
+         16   when the incident happened.  And I asked her if she's okay,
+
+         17   and I asked her if she needed some -- any medical help.  And
+
+         18   I helped her to get her up, because she is now -- tried to
+
+         19   -- just help her, as much as I want to help her.  And I
+
+         20   tried to escort her towards the other side where what was
+
+         21   supposed to be -- her husband was waiting for her.
+
+         22        Q.   Okay.  When did you first see Ms. Stephens just
+
+         23   before the accident?  You said that she was --
+
+         24        A.   I just was seeing her first time when she pop up.
+
+         25        Q.   I'm asking when you saw her for the first time,
+
+
+
+
+
+                                                                    13
+
+          1   where she was.
+
+          2        A.   For the first time?  That was the accident
+
+          3   happened.  That was the first time I saw her.
+
+          4        Q.   Okay.  Was there any reason why you couldn't have
+
+          5   seen her sooner?  Was something in the way?
+
+          6        A.   No, sir.
+
+          7        Q.   You don't recall any passenger or worker standing
+
+          8   right next to where she was passing?
+
+          9        A.   There were guests right next to -- just right next
+
+         10   to my cart, there was a guest, like, standing there.  And
+
+         11   she was just, like, there next to that lady.  And she was
+
+         12   just, like, right across.  And she hit my cart.
+
+         13        Q.   When you said "that lady", were you referring to
+
+         14   Ms. Stephens or the person that was standing --
+
+         15        A.   The person standing there.  That person standing
+
+         16   there.
+
+         17        Q.   Okay.  How would you describe that person?  Do you
+
+         18   remember what she looked like?
+
+         19        A.   I have no idea what she looks like.
+
+         20        Q.   Okay.  So you made the decision to get the the ice
+
+         21   and to move the ice -- you made that decision on your own?
+
+         22        A.   Yes.
+
+         23        Q.   Nobody told you to do that.  Right?
+
+         24        A.   Nobody told me.
+
+         25        Q.   Okay.  I'm still not clear on whether the cart was
+
+
+
+
+
+                                                                    14
+
+          1   carrying the ice at the time, or you were going to get the
+
+          2   ice.  Can you tell me which?
+
+          3        A.   I am carrying the ice.  I am now carrying that ice
+
+          4   by my cart.  My cart with ice inside.
+
+          5        Q.   Okay.  And that was just before the accident?
+
+          6        A.   Yes.
+
+          7        Q.   Okay.  And do you know how much that cart weighed
+
+          8   at that time, or probably weighed at that time?
+
+          9        A.   Well, ice is around -- by kilos for me, 50 to 100
+
+         10   kilos.
+
+         11        Q.   50 to 100 kilos.  How large was the cart?  How
+
+         12   long was it?  How high was it?  And then how wide was it?
+
+         13   Can you estimate?
+
+         14        A.   I think about my waist, waist or tummy, and long
+
+         15   enough to reach, like, let's say one meter forward from
+
+         16   where I hold the handle of that cart.
+
+         17        Q.   Okay.  So is it -- at the top, is it more or less
+
+         18   a square, sort of --
+
+         19        A.   Yes, a square.
+
+         20        Q.   -- equally long and equally wide?  I mean, in
+
+         21   other words, if you stopped your cart and you went to the
+
+         22   left side and then you reached across it with your arm,
+
+         23   would that be about a meter?
+
+         24             MR. POLITIS:  Objection, vague.
+
+         25        Q.   (By Mr. Whitehead)  You can answer if you think
+
+
+
+
+
+                                                                    15
+
+          1   you know that I was asking.  I'll rephrase the question.  Do
+
+          2   you want me to rephrase it?
+
+          3        A.   Yes, please.  Can you rephrase it?
+
+          4        Q.   Well, when you said that you could reach out with
+
+          5   your arm and it was about a meter, were you talking about
+
+          6   the distance from the side that you were -- from the handle
+
+          7   that you were pushing until the far side -- I mean, until
+
+          8   the end of that side?
+
+          9        A.   Yes.
+
+         10        Q.   Okay.  And --
+
+         11        A.   Excuse me, sir.  I need to say something.  Can I
+
+         12   make it more elaborate?
+
+         13        Q.   Sure.
+
+         14        A.   All right.  So if I am holding the handle from my
+
+         15   tummy, that would be around almost a meter, almost a meter
+
+         16   forward.
+
+         17        Q.   Okay.  And what if you stepped around it, let's
+
+         18   say to the right, and then you turned to look at the cart,
+
+         19   and you reached across the width of the cart.  Would that
+
+         20   also be about a meter?
+
+         21        A.   From the right towards -- no, this is around --
+
+         22   I'd say one foot and a half, maybe.  Or it's one foot.
+
+         23        Q.   Okay.  Did you find that it was difficult to push?
+
+         24        A.   No, no, no.  The cart has big wheels at the back
+
+         25   and it has small wheels in front.
+
+
+
+
+
+                                                                    16
+
+          1        Q.   Okay.  Just before the accident, do you recall
+
+          2   talking to anybody that you saw as you were pushing the
+
+          3   cart?
+
+          4        A.   No, I wasn't talking to anybody.  I was just, like
+
+          5   -- like, for me, it's just, like, to get through this cart,
+
+          6   as much as I want to go to the other side and refill my ice,
+
+          7   and refill the ice into my bar.
+
+          8        Q.   Okay.  If you remember how you were pushing the
+
+          9   cart just before the accident, off to your left, was there a
+
+         10   bar there?
+
+         11        A.   Yes, it has -- there were people, yeah.
+
+         12        Q.   Do you remember talking, as you're pushing the
+
+         13   cart?  Do you remember looking over at the bar and maybe
+
+         14   saying something to somebody there that you knew?
+
+         15        A.   No.  I didn't talk to anybody there.
+
+         16        Q.   Was the area very crowded at that time?
+
+         17        A.   Pardon me?
+
+         18        Q.   Was the deck very crowded, lots of people?
+
+         19        A.   Yes, lots of people.
+
+         20        Q.   Okay.  Do you believe the accident was your fault
+
+         21   at all?
+
+         22        A.   No.
+
+         23        Q.   Do you recall when you were -- well, the first
+
+         24   time you saw Ms. Stephens, was that after she passed by the
+
+         25   woman that you described earlier that was standing there?
+
+
+
+
+
+                                                                    17
+
+          1   In other words, you didn't see her before she got up next to
+
+          2   that woman.  Is that right?
+
+          3        A.   I didn't see her.  I didn't see her.
+
+          4        Q.   Okay.  And so then did she actually pass that
+
+          5   woman before the accident?
+
+          6        A.   Before the accident?
+
+          7        Q.   Right.
+
+          8        A.   I could not recall if she passed that woman.  But
+
+          9   as long as she just popped up from that right side, she
+
+         10   bumped the cart, and that's what happened.
+
+         11        Q.   Okay.  Were you able to stop the cart before you
+
+         12   hit her?
+
+         13        A.   Yeah, I --
+
+         14             MR. POLITIS:  Objection, vague, states facts not
+
+         15   in evidence.
+
+         16        Q.   (By Mr. Whitehead)  I'm sorry, your answer was
+
+         17   what?  I asked you if you had stopped the cart before you
+
+         18   hit her -- or before she hit you.  Yeah, I don't care -- in
+
+         19   other words -- and I'm sorry to interrupt you, but I want to
+
+         20   be sure this is clear.  You saw her, the way she was
+
+         21   walking.  Did you stop the cart before there was contact
+
+         22   between the cart and Ms. Stephens?
+
+         23             MR. POLITIS:  Objection, vague.  You can answer.
+
+         24             THE WITNESS:  I can answer?
+
+         25             MR. POLITIS:  If you understand, yeah.
+
+
+
+
+
+                                                                    18
+
+          1        A.   No.  You were saying that before I -- before she
+
+          2   hit the cart.  No, I didn't see her.
+
+          3        Q.   (By Mr. Whitehead)  Did not see her?
+
+          4        A.   I didn't see her.
+
+          5        Q.   Okay.  So you mentioned that she fell to the deck,
+
+          6   and then you tried to help her up.  Is that right?
+
+          7        A.   Right.
+
+          8        Q.   And I wasn't clear on -- you may not have said
+
+          9   anything about this, but were you able to get her to her
+
+         10   feet, and then, you know -- or did you get her off the deck?
+
+         11        A.   She actually want some help.  She tried to just --
+
+         12   rising, or tried to get up using her hand.  And I grabbed
+
+         13   her hand and I asked her if she needed some medical help.
+
+         14   But she is maybe actually losing her balance, and she wanted
+
+         15   that -- she grabbed on my hand and moving forward.
+
+         16        Q.   Did you actually get her off the deck?  Did she
+
+         17   stand up?
+
+         18        A.   No, she tried to -- I tried to help her once, to
+
+         19   held my hand, but she actually asking for, you know -- her
+
+         20   hand, and grabbed my hand, and she got up.
+
+         21        Q.   I'm sorry.  I'm just not following this
+
+         22   completely.  So she did stand up while you were standing
+
+         23   there?
+
+         24        A.   Yes, because she need to grab my hand, and I asked
+
+         25   her if she need some medical help, if she needed something.
+
+
+
+
+
+                                                                    19
+
+          1   And then when I grabbed her hand, she actually wants to see
+
+          2   her husband for the other side.  It was supposed to be the
+
+          3   man in the smoking side.
+
+          4        Q.   Did you see her go to her husband?
+
+          5        A.   I help her to stand up, and escorted her to her
+
+          6   husband, to the other side.  Yes, sir.
+
+          7        Q.   Okay.  Did her husband start coming towards you
+
+          8   before you got to the place that he was at the time of the
+
+          9   accident?
+
+         10        A.   Yes.  Yes.
+
+         11        Q.   Okay.  Did you yourself ever report the accident
+
+         12   to anyone working on the vessel?
+
+         13        A.   Yes, I actually reported incident to my
+
+         14   supervisor.
+
+         15        Q.   Who was that?  Who was your supervisor?
+
+         16        A.   The assistant beverage manager.  The assistant
+
+         17   beverage manager, yes.  And she asked -- she were around --
+
+         18   he was around, and yeah, I reported immediately that
+
+         19   incident.
+
+         20        Q.   Okay.  Did you fill out any kind of an accident
+
+         21   form describing the accident?
+
+         22        A.   Yes, sir, incident.
+
+         23        Q.   Okay.  Do you remember ever, on that cruise, do
+
+         24   you remember ever pushing the cart through that area at a
+
+         25   time when there were lots of people there?
+
+
+
+
+
+                                                                    20
+
+          1        A.   Well, I remember that it is normal in the sailaway
+
+          2   party, when we are having this -- not only one cart, but
+
+          3   preparing five of those carts in standby, where all the
+
+          4   beers and sodas that we need to put on ice in it.  And we
+
+          5   have this standby cart for an ice refill that we need to use
+
+          6   to get to the other side.  Like, I remember I have, like,
+
+          7   four carts, four of the same carts, on standby just to fill
+
+          8   in all of this sailaway drink, like, for beers and sodas.
+
+          9   And yes, we needed to put some ice in there just to make
+
+         10   that beer ice cold, ready.
+
+         11        Q.   Okay.  Were you ever criticized or disciplined by
+
+         12   anyone on the vessel for that accident?
+
+         13        A.   No.
+
+         14        Q.   Did you have any kind of conversations with
+
+         15   anybody, other than the assistant beverage manager you
+
+         16   mentioned, about the accident?
+
+         17        A.   Security, the security officer.
+
+         18        Q.   Did the security officer ask to speak with you?
+
+         19        A.   Yes.
+
+         20        Q.   Okay.  And do you remember what that conversation
+
+         21   was like?
+
+         22        A.   The conversation we have -- we were in his office,
+
+         23   and we tried to review the video, review the video.  And
+
+         24   yes, the incident report.  I made the incident report.
+
+         25        Q.   Okay.  So you've seen the video?
+
+
+
+
+
+                                                                    21
+
+          1        A.   Yes, sir.
+
+          2        Q.   Have you seen it more than once?
+
+          3        A.   I've seen only once during that -- when I was
+
+          4   called to the security office.
+
+          5        Q.   Okay.  Do you remember anything that the security
+
+          6   officer said to you?
+
+          7        A.   The only thing that I remember, he wants to report
+
+          8   the incident by him.  And he said, Mark, there was a claim
+
+          9   from the guest for the incident happened, and that's as far
+
+         10   as I know.  That's the only thing that I remember.
+
+         11        Q.   Okay.  I know you said you'd only seen the video
+
+         12   once.  Do you recall thinking that what you saw on the video
+
+         13   was what you remembered?
+
+         14        A.   Mm-hmm.
+
+         15        Q.   In other words, it was consistent with your memory
+
+         16   of what happened?
+
+         17        A.   Yes, sir.
+
+         18        Q.   Okay.  So is this just one of those accidents that
+
+         19   happened without anybody's fault?  Or do you believe
+
+         20   Ms. Stephens was at least partly at fault for that accident?
+
+         21        A.   Well, accident happened, and I believe that when
+
+         22   that happened, it was maybe her fault.
+
+         23        Q.   Okay.  I think the answer to my next question
+
+         24   probably is obvious, but I think I need to ask it.  And that
+
+         25   is, are you saying it was her fault because she wasn't
+
+
+
+
+
+                                                                    22
+
+          1   paying attention to the area where you were?
+
+          2        A.   Yes, correct.
+
+          3        Q.   Okay.
+
+          4             MR. WHITEHEAD:  Thank you.  I think that's all I
+
+          5   have for me.  I understand Mr. Politis may have some
+
+          6   questions for you, and I may have some after he finishes.
+
+          7   Okay?  But thank you.
+
+          8             MR. POLITIS:  And do you need to take a break,
+
+          9   Mark, at this point?  Do you want to take a five-minute
+
+         10   bathroom break and come back?
+
+         11             THE WITNESS:  I will get some water.
+
+         12             MR. POLITIS:  Yeah, that would be fine.  Why don't
+
+         13   we come back in five minutes.
+
+         14             VIDEOGRAPHER:  Stand by.  The time is 2:19 p.m.,
+
+         15   and we are off the record.
+
+         16             (WHEREUPON, a recess was taken.)
+
+         17             VIDEOGRAPHER:  The time is 2:30 p.m., and we are
+
+         18   back on the record.
+
+         19
+
+         20   EXAMINATION
+
+         21   BY MR. POLITIS:
+
+         22        Q.   Sir, what's your current residence?  What country
+
+         23   do you live in?
+
+         24        A.   Country?  Philippines.
+
+         25        Q.   Philippines.  Okay.  And you're a citizen of the
+
+
+
+
+
+                                                                    23
+
+          1   Philippines?
+
+          2        A.   I am, yes, sir.
+
+          3        Q.   Okay.  How long have you been a bartender with
+
+          4   Holland America Line, since what year?
+
+          5        A.   Since what year?  When I was, like, elevated from
+
+          6   where I started, as from -- we been doing this since 2003.
+
+          7   It was like I started sanitation facility.  Then after that, I was
+
+          8   training where I was at guest services.  And then my heart
+
+          9   is, like, bartending.  So I start training again into other
+
+         10   department and started GP utility and a step up from
+
+         11   bartender to waiter and become a bartender.
+
+         12        Q.   Okay.  So what year did you start working as a
+
+         13   bartender on board Holland America Line ships?
+
+         14        A.   I was a bar attendant.  Bar attendant is just like
+
+         15   a bar waiter, in 2006.
+
+         16        Q.   Okay.  So since 2006, you've been either a
+
+         17   bartender or a bar attendant?
+
+         18        A.   Yes, sir.
+
+         19        Q.   Okay.  And in that capacity, since 2006, have you
+
+         20   worked at the sailaway parties?
+
+         21        A.   Yes, sir.
+
+         22        Q.   What is the sailaway party?
+
+         23        A.   Sailaway party, it is a party that we started
+
+         24   after the embarkation.  We are beginning to start
+
+         25   the cruise.  It could be a seven-days cruise.  It could be a
+
+
+
+
+
+                                                                    24
+
+          1   grand voyage cruise.  But Caribbean cruise, it's more or less,
+
+          2   like, seven days and 10 days run, like a pretty short run
+
+          3   for a cruise, like seven days.
+
+          4        Q.   So it's at the beginning of the cruise?
+
+          5        A.   It is the beginning of the cruise, correct.
+
+          6        Q.   And in your experience, does that happen on every
+
+          7   Holland America Line cruise?
+
+          8        A.   Correct, yes, sir.
+
+          9        Q.   As a bartender, did you always work those sailaway
+
+         10   events?
+
+         11        A.   Yes.  Yes.  Beverage and any bar stop always
+
+         12   involved in the sailaway.  Well, side by side with the
+
+         13   entertainment.
+
+         14        Q.   In your experience working those sailaway events,
+
+         15   did the bartenders use carts in the same way you were using
+
+         16   a cart on the day of Ms. Stephens' accident?
+
+         17        A.   Yes.  Yes, sir.
+
+         18        Q.   Since 2006, are you aware of any passenger being
+
+         19   injured by a cart during a sailaway event?
+
+         20        A.   For my experience, I never heard.
+
+         21        Q.   And you never had an incident when where you were
+
+         22   using a cart during a sailaway.  Correct?
+
+         23        A.   Correct.  Correct.
+
+         24        Q.   Other than Ms. Stephens' accident?
+
+         25        A.   Yes, sir.
+
+
+
+
+
+                                                                    25
+
+          1        Q.   You know, we have the video, the CCTV of the
+
+          2   accident, which I would like to show you.
+
+          3             MR. POLITIS:  Can the -- exhibit attendant, let's
+
+          4   mark this as Exhibit 1.
+
+          5             (WHEREUPON, Exhibit 1 was marked for
+
+          6              identification.)
+
+          7             MR. POLITIS:  Can you show that to the witness?
+
+          8             VIDEOGRAPHER:  Yes, I can.  Would you like me to
+
+          9   put it on a loop so that it replays?
+
+         10             MR. POLITIS:  Well, let's just play it once, and
+
+         11   then we'll ask the witness if he wants to see it again.
+
+         12             VIDEOGRAPHER:  Copy that.
+
+         13             (WHEREUPON, the videographer played the video for
+
+         14              the witness.)
+
+         15        Q.   (By Mr. Politis)  Would you like to see it one
+
+         16   more time?
+
+         17        A.   Yes.
+
+         18             (WHEREUPON, the videographer played the video for
+
+         19             the witness.)
+
+         20        Q.   (By Mr. Politis)  Okay.  I think that's good.  And
+
+         21   there's a man in a white shirt pushing the cart.  Is that
+
+         22   you?
+
+         23        A.   Correct.
+
+         24        Q.   Now, watching that video, that's the same video.
+
+         25   Is that the same video you saw in the security officer's
+
+
+
+
+
+                                                                    26
+
+          1   office?
+
+          2        A.   Yes, sir.
+
+          3        Q.   And does it fairly and accurately depict the
+
+          4   accident as you remember it?
+
+          5        A.   Yes.
+
+          6        Q.   At the beginning of the video, the cart is
+
+          7   stopped.
+
+          8        A.   Correct.
+
+          9        Q.   It's not moving.
+
+         10        A.   Yes.
+
+         11        Q.   Why was that?
+
+         12        A.   Oh, because, as I am pulling the cart, that busy
+
+         13   area is right -- people just came from the right, so I need
+
+         14   to move slowly and stop, and slowly forward and stop.  So as
+
+         15   far as I remember, that was the thing that, you know --
+
+         16        Q.   Okay.  So is it correct you had stopped the cart
+
+         17   for passengers to cross?
+
+         18        A.   Yes.
+
+         19        Q.   And then you had started up again just before the
+
+         20   accident.  Correct?
+
+         21        A.   Yes, sir.
+
+         22        Q.   Which -- how would you describe the speed of the
+
+         23   cart?
+
+         24        A.   Speed.  This is like when you walk through -- just
+
+         25   like when you walk through -- the cart, when you walk
+
+
+
+
+
+                                                                    27
+
+          1   through the aisle, you know, busy people from left or right.
+
+          2   So I'm not in a hurry that time.  So I just want to
+
+          3   transport that ice to the other side.  But I need to -- I
+
+          4   cannot say how the speed is.  I'm stopping one step at a
+
+          5   time, move forward one step, and move forward.  Because the
+
+          6   aisle with people is busy.
+
+          7             MR. POLITIS:  I don't have any more questions.
+
+          8   Thank you.
+
+          9             MR. WHITEHEAD:  I'd like to ask that the
+
+         10   videographer, or whoever's in charge there, could show the
+
+         11   video two or three times more, but let's stop between number
+
+         12   1 and number 2, and maybe number 2 and number 3.
+
+         13             (WHEREUPON, the reporter played the video for the
+
+         14              witness.)
+
+         15             MR. WHITEHEAD:  Okay.  Sorry.  Well, the next time
+
+         16   through, please stop when the woman with the blond hair, who
+
+         17   is standing in this picture next to Mr. Balbuena -- you need
+
+         18   to go back and do it again.  Can you replay that, please?
+
+         19   Stop.  Stop.  Okay.  My fault.  But the woman with the blond
+
+         20   hair who appears to be in kind of a blue and pink top and
+
+         21   dark shorts, that's who I want you to focus on as
+
+         22   Ms. Stephens comes through.  So can we run it another one or
+
+         23   two times.
+
+         24             VIDEOGRAPHER:  I can also do a frame by frame
+
+         25   playback if you'd like to see it slower, Mr. Whitehead.
+
+
+
+
+
+                                                                    28
+
+          1             MR. WHITEHEAD:  Okay.  Let's try the play by play
+
+          2   playback, or whatever you just said.  That goes too fast.
+
+          3             VIDEOGRAPHER:  There should be a -- playback.  I
+
+          4   can slow it down.
+
+          5
+
+          6   FURTHER EXAMINATION
+
+          7   BY MR. WHITEHEAD:
+
+          8        Q.   Okay.  Mr. Balbuena, did you notice what the woman
+
+          9   with the blond hair did just before you contacted
+
+         10   Ms. Stephens?
+
+         11             MR. POLITIS:  I'm going to object to that.  It's
+
+         12   vague.  I'm not sure -- well, I'll just object as vague.
+
+         13        Q.   (By Mr. Whitehead)  Yeah.  Well, does it appear to
+
+         14   you that the woman with the blond hair actually was moving,
+
+         15   perhaps to get out of Ms. Stephens' way, I don't know.  But
+
+         16   she was moving back into the path that you, Mr. Balbuena,
+
+         17   were traveling.  Do you agree with that?
+
+         18             MR. POLITIS:  Objection, vague.
+
+         19        A.   Can you please repeat your question, sir?
+
+         20        Q.   (By Mr. Whitehead)  Yes.  I'm going to ask the
+
+         21   videographer to run it again in a moment.  But let me try to
+
+         22   describe it.  Okay.  Do you see the woman with the blond
+
+         23   hair and the kind of blue and pink top --
+
+         24        A.   Yes.
+
+         25        Q.   -- who's now sort of looking in the direction of
+
+
+
+
+
+                                                                    29
+
+          1   the man with the gray -- we're looking at his back, the gray
+
+          2   T-shirt.  Anyway, so it's the blond woman I want you to look
+
+          3   at, as Ms. Stephens walks in that direction.  And I'd also
+
+          4   like you to look at where -- what do you do, Mr. Balbuena,
+
+          5   when you see the woman with the blond hair moving in your
+
+          6   direction.
+
+          7             MR. WHITEHEAD:  Go ahead and play it, please.
+
+          8             (WHEREUPON, the videographer played the video for
+
+          9              the witness.)
+
+         10        Q.   (By Mr. Whitehead)  So what did you see happening
+
+         11   there, Mr. Balbuena?
+
+         12        A.   Yes, it just pop up on the right side, and yes,
+
+         13   she bumped my cart.
+
+         14        Q.   The woman with the blond hair?
+
+         15        A.   No.  The woman with the blond hair, she's aware.
+
+         16   She's aware that I'm coming.
+
+         17        Q.   Who's aware that you're coming?
+
+         18        A.   As far as the video was shown, yes, that woman,
+
+         19   that woman is right beside me.
+
+         20        Q.   She saw that you were coming?
+
+         21        A.   No, no.  I did say that she saw them coming, but
+
+         22   she just, like, staying there, staying there and not moving
+
+         23   at all.
+
+         24        Q.   You didn't see the woman with the blond hair
+
+         25   moving just before the accident?
+
+
+
+
+
+                                                                    30
+
+          1             MR. POLITIS:  Objection, misstates testimony,
+
+          2   vague.
+
+          3        A.   No.  In the video, I could see her.  But as far as
+
+          4   I'm -- I have problem with the cart, I know that there was a
+
+          5   woman that's right in front or in the right side of my cart.
+
+          6   And it's not moving.
+
+          7        Q.   (By Mr. Whitehead)  Well, I may have to ask you
+
+          8   again.  But let's show this one more time.  And I want you
+
+          9   to focus on you, Mr. Balbuena, and I'll try to say "stop" at
+
+         10   the right time.
+
+         11             MR. WHITEHEAD:  Okay.  You can run it.
+
+         12             VIDEOGRAPHER:  Yeah, I'm going to go frame by
+
+         13   frame here, if that helps everybody.  Does that look okay?
+
+         14             MR. WHITEHEAD:  Yeah.
+
+         15        Q.   (By Mr. Whitehead)  Yeah, Mr. Balbuena -- stop --
+
+         16   just before this point here, do you see that your head was
+
+         17   pointed towards the bar?
+
+         18        A.   Yeah, I could see that, yes, the right side.
+
+         19        Q.   And why was that?  Why were you looking towards
+
+         20   the bar?
+
+         21        A.   I was looking people from left to right.
+
+         22        Q.   Okay.  So when you looked toward the bar, you had
+
+         23   not yet made contact with Ms. Stephens.  Correct?
+
+         24        A.   I'm looking from forward, from left to right.  It
+
+         25   is my ice that is -- I'm looking right to left and forward.
+
+
+
+
+
+                                                                    31
+
+          1        Q.   Well, do you recall the woman with the blond hair,
+
+          2   did she actually bump into your cart before the accident?
+
+          3        A.   As far as in the CCTV, yes, I could see her.  I
+
+          4   could see her that she was just, like, almost in my cart.
+
+          5        Q.   So is that a time that you would have wanted to
+
+          6   stop moving the cart?
+
+          7        A.   Yes.
+
+          8        Q.   But you didn't stop moving the cart at that point.
+
+          9   Right?
+
+         10        A.   I stopped.  I stopped that time.
+
+         11        Q.   You stopped when -- what time are you talking
+
+         12   about?  When do you think you stopped?
+
+         13        A.   I stopped from time to time.  I'm stopping from
+
+         14   time to time.
+
+         15        Q.   Okay.
+
+         16             MR. WHITEHEAD:  I guess, can we run that through
+
+         17   one more time with the frame by frame, please.
+
+         18             (WHEREUPON, the videographer played the video for
+
+         19              the witness.)
+
+         20             MR. WHITEHEAD:  Stop it there if you could.
+
+         21        Q.   (By Mr. Whitehead)  The woman in blond looks like
+
+         22   she's backing into you.  Correct?
+
+         23        A.   Backing, you mean -- yes, she is right there.  I
+
+         24   was there at the back.
+
+         25        Q.   And at that point, you're looking still -- are you
+
+
+
+
+
+                                                                    32
+
+          1   looking to your left at that point?
+
+          2        A.   I was looking forward.  My head is a little bit
+
+          3   left.  I could see forward, right.  That's what I am doing,
+
+          4   as I'm moving forward with my cart.
+
+          5             MR. WHITEHEAD:  Okay.  Let's see one more frame,
+
+          6   please.  Well, one more, I guess.  That is nice and slow.
+
+          7   But go ahead and let it go.
+
+          8        Q.   (By Mr. Whitehead)  Look at the woman with the
+
+          9   blond hair.  Now she's backed into you.  Correct?
+
+         10             MR. POLITIS:  Objection, vague.
+
+         11        A.   Yes, correct.
+
+         12        Q.   (By Mr. Whitehead)  I mean, do you recall that she
+
+         13   made -- the woman with the blond hair, did she make contact
+
+         14   with that cart?
+
+         15        A.   I don't remember, sir.  Before I -- before leading
+
+         16   with that cart, some people just, you know, slightly -- not
+
+         17   bumped my cart, slightly just touched the cart.  Not only
+
+         18   this woman, but those people just, like, outside there.
+
+         19        Q.   Is it your position -- I'm sorry.  I didn't mean
+
+         20   to interrupt you.  Was there more to say?
+
+         21        A.   No, what I'm saying --
+
+         22             MR. POLITIS:  I'm going to object.  There's no
+
+         23   question pending.  Ask him a question, please.
+
+         24        Q.   (By Mr. Whitehead)  All right.  So do you believe
+
+         25   that where this picture has stopped, has stopped the action,
+
+
+
+
+
+                                                                    33
+
+          1   do you believe that you could see Ms. Stephens at that
+
+          2   point?
+
+          3        A.   I didn't see her.  I didn't see her.
+
+          4        Q.   Did not see her.
+
+          5        A.   Yeah.
+
+          6        Q.   And you may have tried to answer this, and I
+
+          7   apologize if I misunderstood or didn't hear it.  But do you
+
+          8   recall bumping into -- or the woman with the blond hair, her
+
+          9   bumping into you?  Was there contact between that woman and
+
+         10   your cart, to the best of your recollection?
+
+         11        A.   Yes.  As far as I remember, not bumping, but it's
+
+         12   just like slightly touching my cart.
+
+         13        Q.   And wouldn't that have made you think that you
+
+         14   should stop the cart at that point?
+
+         15        A.   Yes, correct.
+
+         16        Q.   And did you stop the cart?
+
+         17        A.   I did.  I did stop the cart.
+
+         18        Q.   From the time you stopped the cart, it didn't move
+
+         19   forward.  Is that your testimony?
+
+         20        A.   Yes, sir.
+
+         21        Q.   Okay.
+
+         22             MR. WHITEHEAD:  Okay.  I think that's all I have
+
+         23   right now.  Thank you.
+
+         24             MR. POLITIS:  I don't have any more questions.
+
+         25             MR. WHITEHEAD:  Okay.  I'm going to -- I'm not
+
+
+
+
+
+                                                                    34
+
+          1   going to order a transcript today.  I will give that thought
+
+          2   and let the reporter know.
+
+          3             THE REPORTER:  Okay.  So Mr. Politis, then, would
+
+          4   you like to order the original of today's transcript?
+
+          5             MR. POLITIS:  Well, I think -- I think the party
+
+          6   deposing has to order the original.
+
+          7             THE REPORTER:  If they decline ordering the
+
+          8   original, then I offer it to the next attorney.  And
+
+          9   obviously, the read and sign will not be produced unless
+
+         10   there is a transcript ordered.
+
+         11             MR. POLITIS:  Right.  This is a first for me.  So
+
+         12   we do want an opportunity for him to do a read/review and
+
+         13   make any changes in the transcript.
+
+         14             But counsel, you don't want a copy of the
+
+         15   transcript?  You don't want it to be transcribed?
+
+         16             MR. WHITEHEAD:  I'm saying that I'm not making a
+
+         17   decision on that today.  You know, for example, if we
+
+         18   mediated tomorrow, sometime soon, I'm trying to save my
+
+         19   client some money.
+
+         20             MR. POLITIS:  Okay.
+
+         21             THE REPORTER:  So Mr. Politis, what I can do is
+
+         22   make a note that if the original is ordered by attorney
+
+         23   Whitehead, then we will produce the read and sign and send
+
+         24   that to you.
+
+         25             MR. POLITIS:  Okay.  Well, we're going to need --
+
+
+
+
+
+                                                                    35
+
+          1   I'm going to need the video, in any event.  And I think if
+
+          2   -- I mean, bottom line, if it's not asked for by counsel for
+
+          3   plaintiff, we will request that a transcript be generated
+
+          4   and produced.
+
+          5             THE REPORTER:  Okay.
+
+          6             MR. POLITIS:  So that's -- I don't know what your
+
+          7   time frame is on that.  Is that something where you just
+
+          8   await the order?
+
+          9             THE REPORTER:  Yes.  Once the order is officially
+
+         10   received, the standard time is approximately two weeks.
+
+         11             MR. POLITIS:  To get the transcript?
+
+         12             THE REPORTER:  Yes, sir.
+
+         13             MR. POLITIS:  Okay.
+
+         14             THE REPORTER:  So I just want to be clear, then,
+
+         15   would you like to for sure order that?  Or would you like to
+
+         16   wait and see what Mr. Whitehead decides to do?
+
+         17             MR. POLITIS:  If Mr. Whitehead orders it, then we
+
+         18   will not order it.  If he decides not to order it, we will
+
+         19   order it so we have it available.  And I want a copy of the
+
+         20   video in any event.
+
+         21             VIDEOGRAPHER:  Mr. Whitehead, did you want the
+
+         22   original of the video, or did you want to wait?
+
+         23             MR. WHITEHEAD:  I already have a copy of the
+
+         24   video.  So I won't ask for it.
+
+         25             MR. POLITIS:  We're talking about the video of the
+
+
+
+
+
+                                                                    36
+
+          1   deposition.
+
+          2             MR. WHITEHEAD:  Oh, I'm sorry.  I'm sorry.  I'll
+
+          3   hold off on that as well.
+
+          4             VIDEOGRAPHER:  Okay.  Well, this is the end of the
+
+          5   deposition of Mark Balbuena.  The time is 2:50 p.m.
+
+          6             (Whereupon, the deposition was concluded at
+
+          7              2:50 p.m.)
+
+          8
+
+          9
+
+         10
+
+         11
+
+         12
+
+         13
+
+         14
+
+         15
+
+         16
+
+         17
+
+         18
+
+         19
+
+         20
+
+         21
+
+         22
+
+         23
+
+         24
+
+         25
+
+
+

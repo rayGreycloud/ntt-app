@@ -24,8 +24,10 @@ export default function Home() {
         if (response.ok) {
           setIsAuthenticated(true);
         }
+        // 401 is expected when not authenticated, don't log it
       } catch (error) {
-        console.log('Auth check failed:', error);
+        // Only log unexpected errors (network issues, etc.)
+        console.error('Auth check error:', error);
       }
     };
 
@@ -34,6 +36,22 @@ export default function Home() {
 
   const handleAuthenticated = () => {
     setIsAuthenticated(true);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      });
+      setIsAuthenticated(false);
+      setTranscriptData(null);
+      setProcessedData(null);
+    } catch (error) {
+      console.error('Logout failed:', error);
+      // Still log out locally even if API call fails
+      setIsAuthenticated(false);
+    }
   };
 
   const handleFileUpload = (data: TranscriptData) => {
@@ -62,11 +80,14 @@ export default function Home() {
           <h1 className='text-4xl font-bold text-gray-900 dark:text-white mb-2'>
             Transcript Text File Formatter
           </h1>
-          <p className='text-gray-600 dark:text-gray-400'>
+          <p
+            className='text-gray-600 dark:text-gray-400'
+            suppressHydrationWarning
+          >
             © {new Date().getFullYear()} Naegeli Deposition & Trial
           </p>
           <button
-            onClick={() => setIsAuthenticated(false)}
+            onClick={handleLogout}
             className='mt-4 text-sm text-blue-600 hover:text-blue-800 underline'
           >
             Sign Out
