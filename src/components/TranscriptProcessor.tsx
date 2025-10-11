@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { TranscriptData, ProcessingOptions } from '@/types/transcript';
+import { TranscriptData, ProcessingStep } from '@/types/transcript';
 
 interface TranscriptProcessorProps {
   transcriptData: TranscriptData;
@@ -14,90 +14,102 @@ export default function TranscriptProcessor({
   onClear,
   onProcessed
 }: TranscriptProcessorProps) {
+  // Step management
+  const [currentStep, setCurrentStep] = useState<ProcessingStep>(
+    ProcessingStep.CLEAN_ARTIFACTS
+  );
+
+  // Content state - preserved across all steps
   const [content, setContent] = useState(transcriptData.content);
-  const [options, setOptions] = useState<ProcessingOptions>({
-    indentationSpaceCount: 5,
-    lineBreakSpaceCount: 5
-  });
-  const [captionMarked, setCaptionMarked] = useState(false);
-  const [showMarkerBtn, setShowMarkerBtn] = useState(false);
-  const [aiDetecting, setAiDetecting] = useState(false);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const [originalContent] = useState(transcriptData.content);
 
-  // Determine base indent of transcript
-  const detectBaseIndent = (text: string): number => {
-    // Split text into lines and remove empty ones
-    const lines = text.split(/\r?\n/).filter((line) => line.trim() !== '');
+  // Step-specific state
+  const [cleanedContent, setCleanedContent] = useState('');
+  const [captionBoundary, setCaptionBoundary] = useState<number | null>(null);
+  const [indentSpaces, setIndentSpaces] = useState(5);
+  const [spaceThreshold, setSpaceThreshold] = useState(5);
+  const [downloadFormat, setDownloadFormat] = useState<'txt' | 'docx'>('docx');
 
-    // Count leading spaces for each line
+  // UI state
+  const [processing, setProcessing] = useState(false);
+  const [aiDetecting, setAiDetecting] = useState(false);
+  const [downloading, setDownloading] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Auto-detect base indent when transcript loads
+  useEffect(() => {
+    if (
+      transcriptData.content &&
+      currentStep === ProcessingStep.CLEAN_ARTIFACTS
+    ) {
+      const baseIndent = detectBaseIndent(transcriptData.content);
+      setIndentSpaces(baseIndent);
+    }
+  }, [transcriptData.content, currentStep]);
+
+  const detectBaseIndent = (text: string): number => {
+    const lines = text.split(/\r?\n/).filter((line) => line.trim() !== '');
     const indents = lines.map((line) => {
       const match = line.match(/^ +/);
       return match ? match[0].length : 0;
     });
-
-    // Find minimum indent across all lines (excluding lines with no indent)
     const nonZeroIndents = indents.filter((indent) => indent > 0);
     if (nonZeroIndents.length > 0) {
       return Math.min(...nonZeroIndents);
     }
-
-    return 5; // Default fallback
+    return 5;
   };
 
-  // Auto-detect base indent when transcript loads
-  useEffect(() => {
-    if (transcriptData.content) {
-      const baseIndent = detectBaseIndent(transcriptData.content);
-      setOptions((prev) => ({
-        ...prev,
-        indentationSpaceCount: baseIndent
-      }));
-    }
-  }, [transcriptData.content]);
+  // Step 1: Clean page/line artifacts
+  const cleanArtifacts = () => {
+    setProcessing(true);
+    try {
+      // Normalize line endings
+      let cleaned = content.replace(/\r\n/g, '\n');
 
+      // Remove page and line number artifacts (pattern: newline + optional spaces + digits + up to 3 spaces)
+      cleaned = cleaned.replace(/\n\s*\d+\s{0,3}/g, '\n');
+
+      setCleanedContent(cleaned);
+      setContent(cleaned);
+      setCurrentStep(ProcessingStep.DETECT_CAPTION);
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  // Step 2: Detect caption boundary (manual or AI)
   const insertCaptionMark = () => {
-    if (captionMarked || !textareaRef.current) return;
+    if (!textareaRef.current || captionBoundary !== null) return;
 
     const textarea = textareaRef.current;
     const cursorPos = textarea.selectionStart;
 
     const marked =
-      content.slice(0, cursorPos) + '🚩\n ' + content.slice(cursorPos);
-
+      content.slice(0, cursorPos) + '🚩\n' + content.slice(cursorPos);
     setContent(marked);
-    setCaptionMarked(true);
-    setShowMarkerBtn(true);
-  };
-
-  const clearCaptionMark = () => {
-    setContent(originalContent);
-    setCaptionMarked(false);
-    setShowMarkerBtn(false);
+    setCaptionBoundary(cursorPos);
   };
 
   const detectCaptionWithAI = async () => {
-    if (!transcriptData) return;
-
     setAiDetecting(true);
     try {
       const response = await fetch('/api/transcript/detect-caption', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content: originalContent })
+        body: JSON.stringify({ content: cleanedContent || content })
       });
 
       const data = await response.json();
 
       if (data.success && data.boundary > 0) {
+        const baseContent = cleanedContent || content;
         const marked =
-          originalContent.slice(0, data.boundary) +
-          '🚩\n ' +
-          originalContent.slice(data.boundary);
-
+          baseContent.slice(0, data.boundary) +
+          '🚩\n' +
+          baseContent.slice(data.boundary);
         setContent(marked);
-        setCaptionMarked(true);
-        setShowMarkerBtn(true);
+        setCaptionBoundary(data.boundary);
       } else {
         alert(
           'Could not automatically detect caption boundary. Please mark it manually.'
@@ -111,59 +123,116 @@ export default function TranscriptProcessor({
     }
   };
 
-  const splitTextOnMarker = (text: string) => {
-    const markerIdx = text.indexOf('🚩');
-    const caption = text.slice(0, markerIdx);
-    const body = text.slice(markerIdx + 2);
-    return { caption, body };
+  const clearCaptionMark = () => {
+    setContent(cleanedContent || originalContent);
+    setCaptionBoundary(null);
   };
 
-  const removeIndentations = (text: string) => {
-    const regex = new RegExp(`\\n\\s{${options.indentationSpaceCount}}`, 'g');
-    return text.replace(regex, '\n');
-  };
-
-  const removeExtraLineBreaks = (text: string) => {
-    const regex = new RegExp(
-      `\\n(?!Q\\.|Q|A\\.|A|\\s{${options.lineBreakSpaceCount},})`,
-      'g'
-    );
-    return text.replace(regex, ' ');
-  };
-
-  const handleIndentationRemoval = () => {
-    if (!transcriptData) {
-      alert('Please select a file first');
+  const confirmCaptionBoundary = () => {
+    if (captionBoundary === null) {
+      alert('Please mark the caption boundary first');
       return;
     }
-
-    const processed = removeIndentations(content);
-    setContent(processed);
+    setCurrentStep(ProcessingStep.REMOVE_INDENTATION);
   };
 
-  const handleLineBreakRemoval = () => {
-    if (!transcriptData) {
-      alert('Please select a file first');
-      return;
+  // Step 3: Remove indentation
+  const removeIndentations = () => {
+    setProcessing(true);
+    try {
+      const regex = new RegExp(`\\n {${indentSpaces}}`, 'g');
+      const processed = content.replace(regex, '\n');
+      setContent(processed);
+      setCurrentStep(ProcessingStep.SPLIT_CAPTION);
+    } finally {
+      setProcessing(false);
     }
-
-    if (!captionMarked) {
-      alert('Please mark the end of the caption by clicking in the textarea');
-      return;
-    }
-
-    const splitText = splitTextOnMarker(content);
-    const cleanedBody = removeExtraLineBreaks(splitText.body);
-    const formatted = splitText.caption + '\n' + cleanedBody;
-
-    setContent(formatted);
-    setCaptionMarked(false);
-    setShowMarkerBtn(false);
   };
 
-  const [downloadFormat, setDownloadFormat] = useState<'txt' | 'docx'>('docx');
-  const [downloading, setDownloading] = useState(false);
+  const detectIndentWithAI = async () => {
+    setAiDetecting(true);
+    try {
+      const response = await fetch('/api/transcript/detect-indent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content })
+      });
 
+      const data = await response.json();
+
+      if (data.success && data.recommendedIndent) {
+        setIndentSpaces(data.recommendedIndent);
+      } else {
+        alert('Could not detect indentation. Using default value.');
+      }
+    } catch (error) {
+      console.error('AI indent detection error:', error);
+    } finally {
+      setAiDetecting(false);
+    }
+  };
+
+  // Step 4: Split caption (validation step)
+  const confirmSplit = () => {
+    // Remove the marker and proceed
+    const cleanedText = content.replace('🚩\n', '');
+    setContent(cleanedText);
+    setCurrentStep(ProcessingStep.CONSOLIDATE_LINEBREAKS);
+  };
+
+  // Step 5: Consolidate line breaks
+  const consolidateLineBreaks = () => {
+    setProcessing(true);
+    try {
+      const markerIdx = content.indexOf('🚩');
+      let caption = '';
+      let body = content;
+
+      if (markerIdx >= 0) {
+        caption = content.slice(0, markerIdx);
+        body = content.slice(markerIdx + 2);
+      }
+
+      const regex = new RegExp(
+        `\\n(?!Q\\.|Q|A\\.|A| {${spaceThreshold},})`,
+        'g'
+      );
+      const cleanedBody = body.replace(regex, ' ');
+
+      const finalContent =
+        markerIdx >= 0 ? caption + '\n' + cleanedBody : cleanedBody;
+
+      setContent(finalContent);
+      setCurrentStep(ProcessingStep.PREVIEW_DOWNLOAD);
+    } finally {
+      setProcessing(false);
+    }
+  };
+
+  const detectLineBreakThresholdWithAI = async () => {
+    setAiDetecting(true);
+    try {
+      const response = await fetch('/api/transcript/analyze-linebreaks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content })
+      });
+
+      const data = await response.json();
+
+      if (data.success && data.recommendedSpaceThreshold) {
+        setSpaceThreshold(data.recommendedSpaceThreshold);
+      } else {
+        alert('Could not analyze line breaks. Using default value.');
+      }
+    } catch (error) {
+      console.error('AI linebreak analysis error:', error);
+    } finally {
+      setAiDetecting(false);
+    }
+  };
+
+  // Download functions
   const downloadTxtFile = () => {
     const blob = new Blob([content], { type: 'text/plain' });
     const url = window.URL.createObjectURL(blob);
@@ -219,197 +288,322 @@ export default function TranscriptProcessor({
   };
 
   const handleDownload = () => {
-    if (!transcriptData) {
-      alert('Please select a file first');
-      return;
-    }
-
     if (downloadFormat === 'txt') {
       downloadTxtFile();
     } else {
       downloadDocxFile();
     }
-
-    // Update the processed data
     onProcessed({
       ...transcriptData,
       content: content
     });
   };
 
+  // Navigation
+  const goToStep = (step: ProcessingStep) => {
+    if (step < currentStep) {
+      setCurrentStep(step);
+    }
+  };
+
   const handleClear = () => {
     setContent('');
-    setCaptionMarked(false);
-    setShowMarkerBtn(false);
+    setCaptionBoundary(null);
+    setCurrentStep(ProcessingStep.CLEAN_ARTIFACTS);
     onClear();
+  };
+
+  // Step titles for navigation
+  const stepTitles = {
+    [ProcessingStep.UPLOAD]: 'Upload',
+    [ProcessingStep.CLEAN_ARTIFACTS]: 'Clean Artifacts',
+    [ProcessingStep.DETECT_CAPTION]: 'Detect Caption',
+    [ProcessingStep.REMOVE_INDENTATION]: 'Remove Indentation',
+    [ProcessingStep.SPLIT_CAPTION]: 'Validate Split',
+    [ProcessingStep.CONSOLIDATE_LINEBREAKS]: 'Consolidate Line Breaks',
+    [ProcessingStep.PREVIEW_DOWNLOAD]: 'Preview & Download'
   };
 
   return (
     <div className='space-y-6'>
-      {/* Controls */}
-      <div className='space-y-4'>
-        {/* AI Caption Detection */}
-        <div className='text-center'>
+      {/* Step Navigation */}
+      <div className='bg-gray-100 p-4 rounded-lg'>
+        <div className='flex items-center justify-between mb-2'>
+          <h3 className='text-sm font-semibold text-gray-700'>
+            Processing Steps
+          </h3>
           <button
-            onClick={detectCaptionWithAI}
-            disabled={captionMarked || aiDetecting}
-            className='px-6 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors'
+            onClick={handleClear}
+            className='text-xs px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors'
           >
-            {aiDetecting
-              ? 'Detecting Caption...'
-              : '🤖 Auto-Detect Caption Boundary'}
-          </button>
-          <p className='text-sm text-gray-500 mt-2'>
-            Or click in the text area below to manually mark the boundary
-          </p>
-        </div>
-
-        <div className='flex flex-wrap gap-4 items-center justify-center'>
-          <div className='flex items-center space-x-2'>
-            <label htmlFor='indentCount' className='text-sm font-medium'>
-              Indentation Spaces:
-            </label>
-            <input
-              id='indentCount'
-              type='number'
-              min='0'
-              max='20'
-              value={options.indentationSpaceCount}
-              onChange={(e) =>
-                setOptions((prev) => ({
-                  ...prev,
-                  indentationSpaceCount: parseInt(e.target.value) || 0
-                }))
-              }
-              className='w-16 px-2 py-1 text-center border rounded'
-            />
-          </div>
-
-          <button
-            onClick={handleIndentationRemoval}
-            className='px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors'
-          >
-            Remove Indents
-          </button>
-
-          <div className='flex items-center space-x-2'>
-            <label htmlFor='lineBreakCount' className='text-sm font-medium'>
-              Line Break Spaces:
-            </label>
-            <input
-              id='lineBreakCount'
-              type='number'
-              min='0'
-              max='20'
-              value={options.lineBreakSpaceCount}
-              onChange={(e) =>
-                setOptions((prev) => ({
-                  ...prev,
-                  lineBreakSpaceCount: parseInt(e.target.value) || 0
-                }))
-              }
-              className='w-16 px-2 py-1 text-center border rounded'
-            />
-          </div>
-
-          <button
-            onClick={handleLineBreakRemoval}
-            className='px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'
-          >
-            Remove Line Breaks
+            Reset
           </button>
         </div>
+        <div className='flex items-center space-x-2 overflow-x-auto'>
+          {[
+            ProcessingStep.CLEAN_ARTIFACTS,
+            ProcessingStep.DETECT_CAPTION,
+            ProcessingStep.REMOVE_INDENTATION,
+            ProcessingStep.SPLIT_CAPTION,
+            ProcessingStep.CONSOLIDATE_LINEBREAKS,
+            ProcessingStep.PREVIEW_DOWNLOAD
+          ].map((step, idx) => (
+            <div key={step} className='flex items-center'>
+              <button
+                onClick={() => goToStep(step)}
+                disabled={step > currentStep}
+                className={`px-3 py-2 rounded text-xs font-medium whitespace-nowrap transition-colors ${
+                  step === currentStep
+                    ? 'bg-blue-600 text-white'
+                    : step < currentStep
+                    ? 'bg-green-100 text-green-800 hover:bg-green-200'
+                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                }`}
+              >
+                {idx + 1}. {stepTitles[step]}
+              </button>
+              {idx < 5 && <div className='mx-1 text-gray-400'>→</div>}
+            </div>
+          ))}
+        </div>
+      </div>
 
-        {/* Text Area */}
-        <div className='relative'>
-          <textarea
-            ref={textareaRef}
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            onClick={insertCaptionMark}
-            onMouseEnter={() => {
-              if (textareaRef.current && !captionMarked) {
-                textareaRef.current.style.cursor = 'pointer';
-              }
-            }}
-            onMouseLeave={() => {
-              if (textareaRef.current) {
-                textareaRef.current.style.cursor = 'default';
-              }
-            }}
-            className='w-full h-96 p-4 border border-gray-300 rounded-lg font-mono text-sm resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
-            placeholder={
-              captionMarked
-                ? 'Content with caption marker...'
-                : 'Click in the text to mark end of caption...'
-            }
-          />
-
-          {!captionMarked && transcriptData && (
+      {/* Text Area - Always visible in same position */}
+      <div className='relative'>
+        <textarea
+          ref={textareaRef}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          onClick={
+            currentStep === ProcessingStep.DETECT_CAPTION &&
+            captionBoundary === null
+              ? insertCaptionMark
+              : undefined
+          }
+          className='w-full h-96 p-4 border border-gray-300 rounded-lg font-mono text-sm resize-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500'
+          placeholder='Transcript content...'
+        />
+        {currentStep === ProcessingStep.DETECT_CAPTION &&
+          captionBoundary === null && (
             <div className='absolute top-2 left-2 bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs'>
-              Click to mark caption boundary
+              Click to mark caption boundary or use AI detection
             </div>
           )}
-        </div>
+        {captionBoundary !== null &&
+          currentStep === ProcessingStep.DETECT_CAPTION && (
+            <div className='absolute top-2 left-2 bg-green-100 text-green-800 px-2 py-1 rounded text-xs'>
+              Caption boundary marked 🚩
+            </div>
+          )}
+      </div>
 
-        {/* Action Buttons */}
-        <div className='space-y-4'>
-          {/* Download Format Selection */}
-          <div className='flex justify-center space-x-4'>
-            <label className='flex items-center space-x-2'>
-              <input
-                type='radio'
-                value='txt'
-                checked={downloadFormat === 'txt'}
-                onChange={(e) =>
-                  setDownloadFormat(e.target.value as 'txt' | 'docx')
-                }
-                className='text-purple-600'
-              />
-              <span>Text File (.txt)</span>
-            </label>
-            <label className='flex items-center space-x-2'>
-              <input
-                type='radio'
-                value='docx'
-                checked={downloadFormat === 'docx'}
-                onChange={(e) =>
-                  setDownloadFormat(e.target.value as 'txt' | 'docx')
-                }
-                className='text-purple-600'
-              />
-              <span>Word Document (.docx)</span>
-            </label>
+      {/* Step-specific Controls */}
+      <div className='bg-white p-4 border border-gray-200 rounded-lg min-h-[120px]'>
+        {currentStep === ProcessingStep.CLEAN_ARTIFACTS && (
+          <div className='space-y-4'>
+            <h3 className='text-lg font-semibold'>
+              Step 1: Clean Page Artifacts
+            </h3>
+            <p className='text-sm text-gray-600'>
+              Remove page numbers and line number artifacts from the transcript.
+            </p>
+            <button
+              onClick={cleanArtifacts}
+              disabled={processing}
+              className='px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400 transition-colors'
+            >
+              {processing ? 'Cleaning...' : 'Clean Artifacts & Continue'}
+            </button>
           </div>
+        )}
 
-          <div className='flex justify-center space-x-4'>
-            {showMarkerBtn && (
+        {currentStep === ProcessingStep.DETECT_CAPTION && (
+          <div className='space-y-4'>
+            <h3 className='text-lg font-semibold'>
+              Step 2: Detect Caption Boundary
+            </h3>
+            <p className='text-sm text-gray-600'>
+              Mark where the caption section ends and testimony begins.
+            </p>
+            <div className='flex flex-wrap gap-3'>
               <button
-                onClick={clearCaptionMark}
-                className='px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors'
+                onClick={detectCaptionWithAI}
+                disabled={captionBoundary !== null || aiDetecting}
+                className='px-6 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:bg-gray-400 transition-colors'
               >
-                Remove 🚩 Marker
+                {aiDetecting ? 'Detecting...' : '🤖 Auto-Detect with AI'}
               </button>
-            )}
+              {captionBoundary !== null && (
+                <>
+                  <button
+                    onClick={clearCaptionMark}
+                    className='px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition-colors'
+                  >
+                    Clear Marker
+                  </button>
+                  <button
+                    onClick={confirmCaptionBoundary}
+                    className='px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'
+                  >
+                    Confirm & Continue
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
 
-            <button
-              onClick={handleDownload}
-              disabled={downloading}
-              className='px-6 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-medium'
-            >
-              {downloading
-                ? 'Generating...'
-                : `Process & Download ${downloadFormat.toUpperCase()}`}
-            </button>
+        {currentStep === ProcessingStep.REMOVE_INDENTATION && (
+          <div className='space-y-4'>
+            <h3 className='text-lg font-semibold'>
+              Step 3: Remove Indentation
+            </h3>
+            <p className='text-sm text-gray-600'>
+              Remove leading spaces from each line to normalize formatting.
+            </p>
+            <div className='flex flex-wrap gap-3 items-center'>
+              <div className='flex items-center space-x-2'>
+                <label htmlFor='indentCount' className='text-sm font-medium'>
+                  Spaces to remove:
+                </label>
+                <input
+                  id='indentCount'
+                  type='number'
+                  min='0'
+                  max='20'
+                  value={indentSpaces}
+                  onChange={(e) =>
+                    setIndentSpaces(parseInt(e.target.value) || 0)
+                  }
+                  className='w-16 px-2 py-1 text-center border rounded'
+                />
+              </div>
+              <button
+                onClick={detectIndentWithAI}
+                disabled={aiDetecting}
+                className='px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:bg-gray-400 transition-colors text-sm'
+              >
+                {aiDetecting ? 'Detecting...' : '🤖 AI Detect'}
+              </button>
+              <button
+                onClick={removeIndentations}
+                disabled={processing}
+                className='px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400 transition-colors'
+              >
+                {processing ? 'Processing...' : 'Remove Indents & Continue'}
+              </button>
+            </div>
+          </div>
+        )}
 
+        {currentStep === ProcessingStep.SPLIT_CAPTION && (
+          <div className='space-y-4'>
+            <h3 className='text-lg font-semibold'>
+              Step 4: Validate Caption Split
+            </h3>
+            <p className='text-sm text-gray-600'>
+              Review the caption/testimony split. The marker will be removed
+              when you continue.
+            </p>
             <button
-              onClick={handleClear}
-              className='px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors'
+              onClick={confirmSplit}
+              className='px-6 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors'
             >
-              Clear
+              Confirm Split & Continue
             </button>
           </div>
-        </div>
+        )}
+
+        {currentStep === ProcessingStep.CONSOLIDATE_LINEBREAKS && (
+          <div className='space-y-4'>
+            <h3 className='text-lg font-semibold'>
+              Step 5: Consolidate Line Breaks
+            </h3>
+            <p className='text-sm text-gray-600'>
+              Remove unnecessary line breaks while preserving Q&A structure.
+            </p>
+            <div className='flex flex-wrap gap-3 items-center'>
+              <div className='flex items-center space-x-2'>
+                <label htmlFor='lineBreakCount' className='text-sm font-medium'>
+                  Space threshold:
+                </label>
+                <input
+                  id='lineBreakCount'
+                  type='number'
+                  min='0'
+                  max='20'
+                  value={spaceThreshold}
+                  onChange={(e) =>
+                    setSpaceThreshold(parseInt(e.target.value) || 0)
+                  }
+                  className='w-16 px-2 py-1 text-center border rounded'
+                />
+              </div>
+              <button
+                onClick={detectLineBreakThresholdWithAI}
+                disabled={aiDetecting}
+                className='px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:bg-gray-400 transition-colors text-sm'
+              >
+                {aiDetecting ? 'Analyzing...' : '🤖 AI Analyze'}
+              </button>
+              <button
+                onClick={consolidateLineBreaks}
+                disabled={processing}
+                className='px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400 transition-colors'
+              >
+                {processing ? 'Processing...' : 'Consolidate & Continue'}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {currentStep === ProcessingStep.PREVIEW_DOWNLOAD && (
+          <div className='space-y-4'>
+            <h3 className='text-lg font-semibold'>
+              Step 6: Preview & Download
+            </h3>
+            <p className='text-sm text-gray-600'>
+              Review the final output and download your formatted transcript.
+            </p>
+            <div className='flex flex-wrap gap-3 items-center'>
+              <div className='flex space-x-4'>
+                <label className='flex items-center space-x-2'>
+                  <input
+                    type='radio'
+                    value='txt'
+                    checked={downloadFormat === 'txt'}
+                    onChange={(e) =>
+                      setDownloadFormat(e.target.value as 'txt' | 'docx')
+                    }
+                    className='text-purple-600'
+                  />
+                  <span className='text-sm'>Text File (.txt)</span>
+                </label>
+                <label className='flex items-center space-x-2'>
+                  <input
+                    type='radio'
+                    value='docx'
+                    checked={downloadFormat === 'docx'}
+                    onChange={(e) =>
+                      setDownloadFormat(e.target.value as 'txt' | 'docx')
+                    }
+                    className='text-purple-600'
+                  />
+                  <span className='text-sm'>Word Document (.docx)</span>
+                </label>
+              </div>
+              <button
+                onClick={handleDownload}
+                disabled={downloading}
+                className='px-6 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 disabled:bg-gray-400 transition-colors font-medium'
+              >
+                {downloading
+                  ? 'Generating...'
+                  : `Download ${downloadFormat.toUpperCase()}`}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
