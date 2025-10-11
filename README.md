@@ -1,36 +1,187 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Transcript Tool - Next.js App
 
-## Getting Started
+A modern, secure transcript formatting tool built with Next.js, featuring AI-powered caption detection, email OTP authentication, and DOCX generation.
 
-First, run the development server:
+## Features
+
+- 🔐 **Email OTP Authentication** - Secure access with whitelisted emails
+- 🤖 **AI Caption Detection** - Automatic boundary detection using Vercel AI SDK
+- 📄 **DOCX Generation** - Professional Word document output with templates
+- 🎨 **Modern UI** - Clean, responsive design with Tailwind CSS
+- ⚡ **Fast Processing** - Real-time transcript formatting
+- 🔒 **Secure** - JWT-based sessions and encrypted storage
+
+## Architecture
+
+- **Frontend**: Next.js 15 with TypeScript and Tailwind CSS
+- **Authentication**: Email OTP with Vercel KV storage
+- **AI Integration**: Vercel AI SDK with OpenAI for caption detection
+- **Email Service**: SendGrid for OTP delivery
+- **Document Generation**: docx library for Word document creation
+- **Deployment**: Optimized for Vercel platform
+
+## Setup Instructions
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Environment Configuration
+
+Copy the example environment file and configure your variables:
+
+```bash
+cp .env.example .env.local
+```
+
+Required environment variables:
+
+#### Vercel KV Database
+
+```env
+KV_URL=your_kv_url
+KV_REST_API_URL=your_kv_rest_api_url
+KV_REST_API_TOKEN=your_kv_rest_api_token
+KV_REST_API_READ_ONLY_TOKEN=your_kv_read_only_token
+```
+
+#### SendGrid Email Service
+
+```env
+SENDGRID_API_KEY=your_sendgrid_api_key
+```
+
+#### OpenAI for AI Caption Detection
+
+```env
+OPENAI_API_KEY=your_openai_api_key
+```
+
+#### App Configuration
+
+```env
+WHITELISTED_EMAILS=user1@company.com,user2@company.com
+JWT_SECRET=your-secure-jwt-secret
+OTP_EXPIRY_MINUTES=10
+```
+
+### 3. Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The app will be available at `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Deployment to Vercel
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Push to GitHub**:
 
-## Learn More
+   ```bash
+   git add .
+   git commit -m "Initial transcript tool setup"
+   git push origin main
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Connect to Vercel**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Click "New Project"
+   - Import your GitHub repository
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Configure Environment Variables**:
 
-## Deploy on Vercel
+   - In Vercel project settings, add all environment variables
+   - Make sure to use production values for APIs
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Deploy**:
+   - Vercel will automatically deploy on push to main
+   - Domain will be provided (e.g., `your-app.vercel.app`)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Service Setup
+
+### Vercel KV Database
+
+1. Go to Vercel Dashboard → Storage
+2. Create new KV database
+3. Copy connection strings to environment variables
+
+### SendGrid Email
+
+1. Sign up at SendGrid
+2. Verify sender email address
+3. Create API key with Mail Send permissions
+4. Update sender email in `src/lib/otp-service.ts`
+
+### OpenAI API
+
+1. Get API key from OpenAI Platform
+2. Add to environment variables
+3. Monitor usage in OpenAI dashboard
+
+## Usage
+
+1. **Authentication**: Users enter their email (must be whitelisted)
+2. **OTP Verification**: 6-digit code sent via email
+3. **File Upload**: Drag & drop or select .txt transcript files
+4. **AI Processing**: Automatic caption boundary detection
+5. **Manual Editing**: Fine-tune formatting options
+6. **Download**: Generate .txt or .docx formatted output
+
+## File Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   ├── auth/          # Authentication endpoints
+│   │   └── transcript/    # Processing endpoints
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx          # Main app component
+├── components/
+│   ├── AuthForm.tsx      # Email OTP authentication
+│   ├── TranscriptUploader.tsx  # File upload interface
+│   └── TranscriptProcessor.tsx # Main processing UI
+├── lib/
+│   ├── otp-service.ts    # Email OTP functionality
+│   ├── transcript-ai.ts  # AI caption detection
+│   └── docx-service.ts   # Word document generation
+└── types/
+    └── transcript.ts     # TypeScript interfaces
+```
+
+## Security Features
+
+- Email whitelist for authorized users only
+- JWT-based secure sessions
+- HTTP-only cookies for token storage
+- OTP expiration and cleanup
+- Environment-based configuration
+
+## Troubleshooting
+
+### Common Issues
+
+1. **OTP not received**: Check SendGrid configuration and sender email
+2. **AI detection fails**: Verify OpenAI API key and usage limits
+3. **DOCX generation errors**: Check file content and template formatting
+4. **Authentication issues**: Verify JWT secret and KV database connection
+
+### Logs
+
+Check Vercel function logs for API errors and debugging information.
+
+## Contributing
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature-name`
+3. Commit changes: `git commit -am 'Add feature'`
+4. Push branch: `git push origin feature-name`
+5. Submit pull request
+
+## License
+
+© 2024 Naegeli Deposition & Trial. All rights reserved.
