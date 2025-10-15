@@ -58,7 +58,7 @@ Expires: 10/11/2025, 3:45:00 PM
 ## Features
 
 ✅ No email service required  
-✅ No Vercel KV required (uses in-memory storage)  
+✅ No Upstash Redis required (uses in-memory storage)  
 ✅ OTP shown in terminal console  
 ✅ OTP shown in UI (dev mode only)  
 ✅ Click to auto-fill OTP  

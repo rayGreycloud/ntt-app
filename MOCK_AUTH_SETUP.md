@@ -52,14 +52,13 @@ JWT_SECRET=your-secret-key-change-this
 **Optional (only needed for production):**
 
 ```env
-# Vercel KV for OTP storage (not required in mock mode)
-KV_URL=your-kv-url
-KV_REST_API_URL=your-kv-rest-api-url
-KV_REST_API_TOKEN=your-kv-rest-api-token
-KV_REST_API_READ_ONLY_TOKEN=your-kv-rest-api-read-only-token
+# Upstash Redis for OTP storage (not required in mock mode)
+# Sign up at https://upstash.com and create a Redis database
+KV_REST_API_URL=your-upstash-redis-rest-api-url
+KV_REST_API_TOKEN=your-upstash-redis-rest-api-token
 ```
 
-**Note:** In mock mode, OTPs are stored in-memory instead of Vercel KV, so you don't need to configure KV for development.
+**Note:** In mock mode, OTPs are stored in-memory instead of Redis, so you don't need to configure Redis for development.
 
 ## Using Mock Mode
 
@@ -177,15 +176,15 @@ If you get "Email not authorized" errors:
 
 ## Configuration Reference
 
-| Variable              | Mock Mode | Production | Description              |
-| --------------------- | --------- | ---------- | ------------------------ |
-| `MOCK_AUTH`           | `true`    | `false`    | Enable/disable mock mode |
-| `SENDGRID_API_KEY`    | Optional  | Required   | SendGrid API key         |
-| `SENDGRID_FROM_EMAIL` | Optional  | Required   | Verified sender email    |
-| `WHITELISTED_EMAILS`  | Bypassed  | Required   | Comma-separated list     |
-| `OTP_EXPIRY_MINUTES`  | `10`      | `10`       | OTP validity period      |
-| `JWT_SECRET`          | Required  | Required   | Session token secret     |
-| `KV_*`                | Required  | Required   | Vercel KV credentials    |
+| Variable              | Mock Mode | Production | Description               |
+| --------------------- | --------- | ---------- | ------------------------- |
+| `MOCK_AUTH`           | `true`    | `false`    | Enable/disable mock mode  |
+| `SENDGRID_API_KEY`    | Optional  | Required   | SendGrid API key          |
+| `SENDGRID_FROM_EMAIL` | Optional  | Required   | Verified sender email     |
+| `WHITELISTED_EMAILS`  | Bypassed  | Required   | Comma-separated list      |
+| `OTP_EXPIRY_MINUTES`  | `10`      | `10`       | OTP validity period       |
+| `JWT_SECRET`          | Required  | Required   | Session token secret      |
+| `KV_*`                | Optional  | Required   | Upstash Redis credentials |
 
 ## Example .env.local Files
 
@@ -195,11 +194,9 @@ If you get "Email not authorized" errors:
 MOCK_AUTH=true
 JWT_SECRET=dev-secret-key
 OTP_EXPIRY_MINUTES=10
-# Add your Vercel KV credentials
-KV_URL=...
-KV_REST_API_URL=...
-KV_REST_API_TOKEN=...
-KV_REST_API_READ_ONLY_TOKEN=...
+# Upstash Redis credentials (optional in mock mode)
+# KV_REST_API_URL=...
+# KV_REST_API_TOKEN=...
 ```
 
 ### Production
@@ -211,9 +208,7 @@ SENDGRID_FROM_EMAIL=noreply@naegeli.com
 WHITELISTED_EMAILS=john@naegeli.com,jane@naegeli.com
 JWT_SECRET=strong-random-production-secret
 OTP_EXPIRY_MINUTES=10
-# Add your Vercel KV credentials
-KV_URL=...
+# Upstash Redis credentials (sign up at https://upstash.com)
 KV_REST_API_URL=...
 KV_REST_API_TOKEN=...
-KV_REST_API_READ_ONLY_TOKEN=...
 ```

@@ -14,7 +14,7 @@ A modern, secure transcript formatting tool built with Next.js, featuring AI-pow
 ## Architecture
 
 - **Frontend**: Next.js 15 with TypeScript and Tailwind CSS
-- **Authentication**: Email OTP with Vercel KV storage
+- **Authentication**: Email OTP with Upstash Redis storage
 - **AI Integration**: Vercel AI SDK with OpenAI for caption detection
 - **Email Service**: SendGrid for OTP delivery
 - **Document Generation**: docx library for Word document creation
@@ -42,12 +42,11 @@ For development without email service setup, see [QUICKSTART_MOCK_AUTH.md](./QUI
 
 Required environment variables:
 
-#### Vercel KV Database
+#### Upstash Redis Database
 
 ```env
-KV_URL=your_kv_url
-KV_REST_API_URL=your_kv_rest_api_url
-KV_REST_API_TOKEN=your_kv_rest_api_token
+KV_REST_API_URL=your_upstash_redis_rest_api_url
+KV_REST_API_TOKEN=your_upstash_redis_rest_api_token
 KV_REST_API_READ_ONLY_TOKEN=your_kv_read_only_token
 ```
 
@@ -109,11 +108,11 @@ The app will be available at `http://localhost:3000`
 
 ## Service Setup
 
-### Vercel KV Database
+### Upstash Redis Database
 
-1. Go to Vercel Dashboard → Storage
-2. Create new KV database
-3. Copy connection strings to environment variables
+1. Sign up at [Upstash](https://upstash.com)
+2. Create a new Redis database
+3. Copy REST API URL and token to environment variables
 
 ### SendGrid Email
 

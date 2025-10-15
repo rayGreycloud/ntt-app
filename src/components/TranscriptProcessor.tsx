@@ -400,7 +400,7 @@ export default function TranscriptProcessor({
       {/* Step-specific Controls */}
       <div className='bg-white p-4 border border-gray-200 rounded-lg min-h-[120px]'>
         {currentStep === ProcessingStep.CLEAN_ARTIFACTS && (
-          <div className='space-y-4'>
+          <div className='space-y-4 text-gray-600'>
             <h3 className='text-lg font-semibold'>
               Step 1: Clean Page Artifacts
             </h3>
