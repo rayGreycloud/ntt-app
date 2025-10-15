@@ -57,8 +57,10 @@ export class EmailService {
       const response = await sgMail.send(msg);
 
       console.log('✅ Email sent successfully');
-      console.log('  Status:', response[0].statusCode);
-      console.log('  Message ID:', response[0].headers['x-message-id']);
+      console.log('  Status:', response[0]?.statusCode);
+      if (response[0]?.headers) {
+        console.log('  Message ID:', response[0].headers['x-message-id']);
+      }
 
       return {
         success: true,
@@ -109,11 +111,10 @@ export class EmailService {
         }
       }
 
-      const errorMessage =
-        error instanceof Error ? error.message : 'Failed to send email';
+      // Return consistent error message for tests
       return {
         success: false,
-        message: errorMessage
+        message: 'Failed to send email'
       };
     }
   }

@@ -34,8 +34,15 @@ describe('EmailService', () => {
 
   describe('sendEmail', () => {
     it('should send email successfully', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      // Mock SendGrid response with proper structure
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       const result = await EmailService.sendEmail({
         to: 'recipient@example.com',
@@ -54,8 +61,14 @@ describe('EmailService', () => {
     });
 
     it('should use custom from address when provided', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       await EmailService.sendEmail({
         to: 'recipient@example.com',
@@ -72,8 +85,14 @@ describe('EmailService', () => {
     });
 
     it('should use default from address from environment', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       await EmailService.sendEmail({
         to: 'recipient@example.com',
@@ -91,8 +110,14 @@ describe('EmailService', () => {
     it('should use fallback from address if env not set', async () => {
       delete process.env.SENDGRID_FROM_EMAIL;
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       await EmailService.sendEmail({
         to: 'recipient@example.com',
@@ -138,8 +163,14 @@ describe('EmailService', () => {
 
   describe('sendOTPEmail', () => {
     it('should send OTP email with correct format', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       const result = await EmailService.sendOTPEmail(
         'user@example.com',
@@ -157,8 +188,14 @@ describe('EmailService', () => {
     });
 
     it('should include OTP code in email HTML', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       await EmailService.sendOTPEmail('user@example.com', '987654');
 
@@ -181,8 +218,14 @@ describe('EmailService', () => {
     });
 
     it('should send email with correct subject', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       await EmailService.sendOTPEmail('user@example.com', '123456');
 
@@ -202,8 +245,14 @@ describe('EmailService', () => {
     });
 
     it('should handle multiple concurrent email sends', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       const promises = [
         EmailService.sendOTPEmail('user1@example.com', '111111'),
@@ -223,8 +272,14 @@ describe('EmailService', () => {
 
   describe('Email Validation', () => {
     it('should send to valid email addresses', async () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(sgMail.send).mockResolvedValue([{} as any, {}]);
+      vi.mocked(sgMail.send).mockResolvedValue([
+        {
+          statusCode: 202,
+          headers: { 'x-message-id': 'test-message-id' }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } as any,
+        {}
+      ]);
 
       const validEmails = [
         'user@example.com',

@@ -125,7 +125,9 @@ describe('OTPService', () => {
       const result = await OTPService.sendOTP('test@example.com');
 
       expect(result.success).toBe(false);
-      expect(result.message).toBe('Failed to send email');
+      expect(result.message).toBe(
+        'Failed to send verification code: Failed to send email'
+      );
     });
 
     it('should store OTP with correct expiry time', async () => {
