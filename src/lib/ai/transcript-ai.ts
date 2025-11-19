@@ -74,7 +74,12 @@ export class TranscriptAIService {
   } {
     const lines = content.split(/\r?\n/);
     const indentCounts = new Map<number, number>();
+    const markerIndentCounts = new Map<number, number>();
     let sampledLines = 0;
+    let markerLines = 0;
+
+    // Regex for standard transcript markers
+    const markerRegex = /^\s*(Q\.|A\.|THE\s+(?:WITNESS|COURT|DEPOSITION)|MR\.|MS\.|DR\.)/i;
 
     // Sample lines and count indentation
     for (const line of lines) {
@@ -83,9 +88,14 @@ export class TranscriptAIService {
       const match = line.match(/^( +)/);
       if (match) {
         const indent = match[1].length;
-        if (indent > 0 && indent <= 20) {
+        if (indent > 0 && indent <= 25) {
           indentCounts.set(indent, (indentCounts.get(indent) || 0) + 1);
           sampledLines++;
+
+          if (markerRegex.test(line)) {
+            markerIndentCounts.set(indent, (markerIndentCounts.get(indent) || 0) + 1);
+            markerLines++;
+          }
         }
       }
     }
@@ -103,28 +113,49 @@ export class TranscriptAIService {
       };
     }
 
-    // Find most common indentation
-    let mostCommonIndent = 5;
-    let maxCount = 0;
-
-    for (const [indent, count] of indentCounts.entries()) {
-      if (count > maxCount) {
-        maxCount = count;
-        mostCommonIndent = indent;
+    // Helper to find mode
+    const getMode = (counts: Map<number, number>) => {
+      let mode = 5;
+      let max = 0;
+      for (const [indent, count] of counts.entries()) {
+        if (count > max) {
+          max = count;
+          mode = indent;
+        }
       }
+      return { mode, max };
+    };
+
+    // Decide which counts to use
+    let finalIndent = 5;
+    let confidence = 0;
+    let reasoning = '';
+    let statsMax = 0;
+
+    if (markerLines > 0) {
+      const { mode, max } = getMode(markerIndentCounts);
+      finalIndent = mode;
+      statsMax = max;
+      const consistency = Math.round((max / markerLines) * 100);
+      confidence = Math.min(0.5 + (consistency / 200), 0.95); // Base 0.5 + up to 0.5
+      reasoning = `Detected ${markerLines} lines with Q/A or speaker markers. Most common indentation for markers is ${finalIndent} spaces.`;
+    } else {
+      const { mode, max } = getMode(indentCounts);
+      finalIndent = mode;
+      statsMax = max;
+      const consistency = Math.round((max / sampledLines) * 100);
+      confidence = Math.min(consistency / 100, 0.8);
+      reasoning = `No clear markers found. Using most common global indentation of ${finalIndent} spaces.`;
     }
 
-    const consistencyPercentage = Math.round((maxCount / sampledLines) * 100);
-    const confidence = Math.min(consistencyPercentage / 100, 0.95);
-
     return {
-      recommendedIndent: mostCommonIndent,
+      recommendedIndent: finalIndent,
       confidence,
-      reasoning: `Found ${mostCommonIndent} spaces as the most common indentation (${consistencyPercentage}% of lines).`,
+      reasoning,
       stats: {
         sampledLines,
-        mostCommonIndent,
-        consistencyPercentage
+        mostCommonIndent: finalIndent,
+        consistencyPercentage: sampledLines > 0 ? Math.round((statsMax / (markerLines > 0 ? markerLines : sampledLines)) * 100) : 0
       }
     };
   }
@@ -161,36 +192,53 @@ export class TranscriptAIService {
     const lines = content.split(/\r?\n/);
     let totalLineBreaks = 0;
     let preservedBreaks = 0;
-    const indentCounts = new Map<number, number>();
+    
+    // Get base indentation first to help with threshold calculation
+    const indentResult = this.fallbackIndentationDetection(content);
+    const baseIndent = indentResult.recommendedIndent;
+    
+    const continuationIndentCounts = new Map<number, number>();
+    const markerRegex = /^\s*(Q\.|A\.|THE\s+(?:WITNESS|COURT|DEPOSITION)|MR\.|MS\.|DR\.)/i;
 
     // Analyze each line break
     for (let i = 1; i < lines.length; i++) {
       totalLineBreaks++;
       const line = lines[i];
 
-      // Check if line should be preserved (has Q/A marker or speaker label)
-      if (
-        /^\s*(Q\.|Q |A\.|A |THE\s+\w+:|MR\.|MS\.|WHEREUPON|EXHIBIT)/.test(line)
-      ) {
+      // Check if line matches a marker pattern
+      if (markerRegex.test(line)) {
         preservedBreaks++;
       } else {
-        // Count leading spaces for continuation lines
+        // Count leading spaces for potential continuation lines
         const match = line.match(/^( +)/);
         if (match) {
           const indent = match[1].length;
-          indentCounts.set(indent, (indentCounts.get(indent) || 0) + 1);
+          // Only count indents that are greater than base indent as potential continuations
+          if (indent > baseIndent) {
+             continuationIndentCounts.set(indent, (continuationIndentCounts.get(indent) || 0) + 1);
+          }
         }
       }
     }
 
-    // Determine threshold based on indent distribution
-    let recommendedThreshold = 5;
+    // Determine threshold
+    let recommendedThreshold = baseIndent + 2; // Default fallback
 
-    // Find the median indentation for continuation lines
-    const sortedIndents = Array.from(indentCounts.keys()).sort((a, b) => a - b);
-    if (sortedIndents.length > 0) {
-      const midpoint = Math.floor(sortedIndents.length / 2);
-      recommendedThreshold = sortedIndents[midpoint];
+    // Find the most common continuation indent
+    let continuationIndent = 0;
+    let maxCount = 0;
+    for (const [indent, count] of continuationIndentCounts.entries()) {
+      if (count > maxCount) {
+        maxCount = count;
+        continuationIndent = indent;
+      }
+    }
+
+    if (continuationIndent > baseIndent) {
+      // Ideally place threshold halfway between base and continuation
+      recommendedThreshold = Math.floor((baseIndent + continuationIndent) / 2);
+      // Ensure it's at least base + 1
+      recommendedThreshold = Math.max(recommendedThreshold, baseIndent + 1);
     }
 
     const consolidatedBreaks = totalLineBreaks - preservedBreaks;
@@ -199,7 +247,7 @@ export class TranscriptAIService {
         ? Math.round((preservedBreaks / totalLineBreaks) * 100)
         : 0;
 
-    const confidence = preservedBreaks > 10 ? 0.75 : 0.5;
+    const confidence = preservedBreaks > 10 ? 0.85 : 0.6;
 
     const warnings: string[] = [];
     if (preservedBreaks < 10) {
@@ -216,7 +264,7 @@ export class TranscriptAIService {
     return {
       recommendedSpaceThreshold: recommendedThreshold,
       confidence,
-      reasoning: `Analyzed ${totalLineBreaks} line breaks. ${preservedBreaks} have Q/A markers. Threshold of ${recommendedThreshold} spaces preserves structure while consolidating continuations.`,
+      reasoning: `Detected base indent of ${baseIndent} and continuation indent of ${continuationIndent || 'unknown'}. Recommended threshold: ${recommendedThreshold}.`,
       stats: {
         totalLineBreaks,
         preservedBreaks,
