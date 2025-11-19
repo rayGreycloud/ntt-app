@@ -3,8 +3,8 @@ import { EmailService } from './email-service';
 
 // Initialize Upstash Redis client
 const redis = new Redis({
-  url: process.env.KV_REST_API_URL!,
-  token: process.env.KV_REST_API_TOKEN!
+  url: process.env.ntt_KV_REST_API_URL!,
+  token: process.env.ntt_KV_REST_API_TOKEN!
 });
 
 // Mock mode: When true, OTP is logged to console instead of being emailed
