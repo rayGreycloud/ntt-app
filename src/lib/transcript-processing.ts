@@ -59,7 +59,10 @@ export function consolidateLineBreaks(
     body = content.slice(markerIdx + 2);
   }
 
-  const regex = new RegExp(`\\n(?!Q\\.|Q|A\\.|A| {${spaceThreshold},})`, 'g');
+  const regex = new RegExp(
+    `\\n(?!(?:\\s*(?:Q\\.|Q\\s|A\\.|A\\s|THE\\s+[A-Z]+:|MR\\.|MS\\.|MRS\\.|DR\\.|VIDEOGRAPHER:|BY\\s+(?:MR\\.|MS\\.|MRS\\.|DR\\.)|CROSS\\s+EXAMINATION|DIRECT\\s+EXAMINATION|REDIRECT\\s+EXAMINATION|RECROSS\\s+EXAMINATION)| {${spaceThreshold},}))`,
+    'g'
+  );
   const cleanedBody = body.replace(regex, ' ');
 
   return markerIdx >= 0 ? caption + '\n' + cleanedBody : cleanedBody;
